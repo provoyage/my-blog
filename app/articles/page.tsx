@@ -20,8 +20,14 @@ export const metadata: Metadata = {
 
 const orderedTypes = ["comparison", "ranking", "review", "concern"] as const;
 
-export default function ArticlesPage() {
+export default async function ArticlesPage() {
   const categories = getCategoryWithCounts();
+  const categoryPostGroups = await Promise.all(
+    categories.map(async (category) => ({
+      category,
+      posts: await getPostsByCategory(category.slug),
+    })),
+  );
 
   return (
     <div className="pb-20">
@@ -91,12 +97,9 @@ export default function ArticlesPage() {
 
       <section className="mx-auto w-full max-w-7xl px-6 py-2 sm:px-8 lg:px-12">
         <div className="grid gap-6 xl:grid-cols-2">
-          {categories.map((category) => {
-            const categoryPosts = getPostsByCategory(category.slug);
-            const rankingPost = categoryPosts.find((post) => post.articleType === "ranking");
-            const comparisonPost = categoryPosts.find(
-              (post) => post.articleType === "comparison",
-            );
+          {categoryPostGroups.map(({ category, posts }) => {
+            const rankingPost = posts.find((post) => post.articleType === "ranking");
+            const comparisonPost = posts.find((post) => post.articleType === "comparison");
 
             return (
               <article key={category.slug} className="glass-panel rounded-[2rem] p-6">

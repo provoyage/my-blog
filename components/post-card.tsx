@@ -17,12 +17,12 @@ export function PostCard({
     <Link
       href={`/articles/${post.slug}`}
       className={`group glass-panel block overflow-hidden rounded-[2rem] transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(26,35,45,0.14)] ${
-        featured ? "lg:grid lg:grid-cols-[1.04fr_0.96fr]" : "h-full"
+        featured ? "" : "h-full"
       }`}
     >
       <div
         className={`relative overflow-hidden ${
-          featured ? "min-h-[20rem] lg:min-h-[28rem]" : "aspect-[4/3]"
+          featured ? "aspect-[4/5] min-h-[20rem] sm:min-h-[24rem]" : "aspect-[4/3]"
         }`}
       >
         <Image
@@ -32,7 +32,7 @@ export function PostCard({
           preload={preload}
           sizes={
             featured
-              ? "(max-width: 1024px) 100vw, 54vw"
+              ? "(max-width: 1024px) 100vw, 42vw"
               : "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
           }
           className="object-cover transition duration-700 group-hover:scale-[1.03]"
@@ -48,7 +48,11 @@ export function PostCard({
         </div>
       </div>
 
-      <article className={`flex h-full flex-col ${featured ? "justify-center p-7 sm:p-9" : "p-6"}`}>
+      <article
+        className={`flex h-full flex-col ${
+          featured ? "p-7 sm:p-8" : "p-6"
+        }`}
+      >
         <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.22em] text-slate-500">
           <span>{formatDate(post.publishedAt)}</span>
           <span className="h-1 w-1 rounded-full bg-slate-400" />
@@ -57,7 +61,9 @@ export function PostCard({
 
         <h3
           className={`mt-4 font-serif tracking-[-0.03em] text-slate-950 transition group-hover:text-slate-700 ${
-            featured ? "text-3xl leading-tight sm:text-4xl" : "text-2xl leading-snug"
+            featured
+              ? "text-3xl leading-[1.08] tracking-[-0.04em] sm:text-[2.55rem]"
+              : "text-2xl leading-snug"
           }`}
         >
           {post.title}
@@ -65,7 +71,7 @@ export function PostCard({
 
         <p
           className={`mt-4 text-slate-600 ${
-            featured ? "max-w-xl text-base leading-8" : "text-sm leading-7"
+            featured ? "text-base leading-8" : "text-sm leading-7"
           }`}
         >
           {post.excerpt}

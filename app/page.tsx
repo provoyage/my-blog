@@ -27,23 +27,32 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
-  const featuredPost = getFeaturedPost();
+export default async function Home() {
+  const featuredPost = await getFeaturedPost();
   const categories = getCategoryWithCounts();
   const topRankedProducts = getTopRankedProducts(3);
-  const featuredComparison = getFeaturedComparisonPost();
-  const featuredRanking = getFeaturedRankingPost();
+  const featuredComparison = await getFeaturedComparisonPost();
+  const featuredRanking = await getFeaturedRankingPost();
   const featuredProducts = getFeaturedProducts(4);
-  const latestPosts = getLatestPosts(4);
-  const popularPosts = getPopularPosts(4);
-  const categoryLandingBlocks = categories.map((category) => ({
-    ...category,
-    products: getRankedProductsByCategory(category.slug, 3),
-    rankingPost: getPostsByCategory(category.slug).find((post) => post.articleType === "ranking"),
-    comparisonPost: getPostsByCategory(category.slug).find(
-      (post) => post.articleType === "comparison",
-    ),
-  }));
+  const latestPosts = await getLatestPosts(4);
+  const popularPosts = await getPopularPosts(4);
+  const postsByCategory = await Promise.all(
+    categories.map(async (category) => ({
+      slug: category.slug,
+      posts: await getPostsByCategory(category.slug),
+    })),
+  );
+  const postsByCategoryMap = new Map(postsByCategory.map((entry) => [entry.slug, entry.posts]));
+  const categoryLandingBlocks = categories.map((category) => {
+    const posts = postsByCategoryMap.get(category.slug) ?? [];
+
+    return {
+      ...category,
+      products: getRankedProductsByCategory(category.slug, 3),
+      rankingPost: posts.find((post) => post.articleType === "ranking"),
+      comparisonPost: posts.find((post) => post.articleType === "comparison"),
+    };
+  });
 
   return (
     <div className="pb-20">
