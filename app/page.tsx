@@ -56,22 +56,20 @@ export default async function Home() {
 
   return (
     <div className="pb-20">
-      <section className="mx-auto grid w-full max-w-7xl gap-8 px-6 pb-8 pt-8 sm:px-8 lg:grid-cols-[1.06fr_0.94fr] lg:px-12 lg:pb-12 lg:pt-10">
-        <div className="space-y-6">
+      <section className="mx-auto grid w-full max-w-7xl gap-10 px-6 pb-10 pt-10 sm:px-8 lg:grid-cols-[1.02fr_0.98fr] lg:px-12 lg:pb-14 lg:pt-14 xl:gap-14">
+        <div className="space-y-8 lg:pr-10 xl:pr-20">
           <span className="inline-flex rounded-full border border-white/70 bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-slate-600 backdrop-blur">
             40代女性の見た目悩みに特化した比較メディア
           </span>
 
-          <div className="space-y-5">
-            <h1 className="max-w-4xl font-serif text-5xl leading-[1.05] tracking-[-0.04em] text-slate-950 text-balance sm:text-6xl lg:text-7xl">
-              白髪、乾燥、ニオイ悩みを
+          <div className="space-y-7">
+            <h1 className="max-w-4xl font-serif text-[3.7rem] leading-[0.94] tracking-[-0.075em] text-slate-950 text-balance sm:text-[4.6rem] lg:text-[5.7rem]">
+              10年前の鏡が、
               <br />
-              比較で整える美容メディア
+              怖くなくなる。
             </h1>
-            <p className="max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-              {siteConfig.name}
-              は、40代女性の見た目悩みに寄り添いながら、比較記事、ランキング記事、レビュー記事を通じて
-              商品選びをしやすくするための美容アフィリエイトメディアです。
+            <p className="max-w-xl text-base leading-8 tracking-[0.01em] text-slate-600 sm:text-lg">
+              年齢のサインに静かに向き合いながら、品よく整えるための選び方だけを集めました。
             </p>
           </div>
 
@@ -92,34 +90,86 @@ export default async function Home() {
 
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="glass-panel rounded-[1.5rem] p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-slate-500">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/85 text-slate-700 shadow-[0_12px_30px_rgba(148,163,184,0.16)]">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="h-5 w-5"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.75 6.75h6.5v6.5h-6.5zM12.75 6.75h6.5v6.5h-6.5zM4.75 14.75h6.5v6.5h-6.5zM12.75 14.75h6.5v6.5h-6.5z"
+                  />
+                </svg>
+              </div>
+              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.26em] text-slate-500">
                 Categories
               </p>
-              <p className="mt-3 font-serif text-4xl text-slate-950">{categories.length}</p>
+              <p className="mt-3 font-serif text-4xl tracking-[-0.04em] text-slate-950">
+                {categories.length}
+              </p>
               <p className="mt-2 text-sm leading-7 text-slate-600">
-                4つの悩みカテゴリごとに、ランキングと比較導線を設計しています。
+                4つの悩みカテゴリごとに、ランキングと比較記事を整理しています。
               </p>
             </div>
             <div className="glass-panel rounded-[1.5rem] p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-slate-500">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/85 text-slate-700 shadow-[0_12px_30px_rgba(148,163,184,0.16)]">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="h-5 w-5"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6.25 7.25h11.5M8 7.25l.4 10.25a1.5 1.5 0 0 0 1.5 1.44h4.2a1.5 1.5 0 0 0 1.5-1.44L16 7.25M9.5 7.25V6a1.75 1.75 0 0 1 1.75-1.75h1.5A1.75 1.75 0 0 1 14.5 6v1.25"
+                  />
+                </svg>
+              </div>
+              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.26em] text-slate-500">
                 Products
               </p>
-              <p className="mt-3 font-serif text-4xl text-slate-950">
+              <p className="mt-3 font-serif text-4xl tracking-[-0.04em] text-slate-950">
                 {categoryLandingBlocks.reduce((sum, category) => sum + category.productCount, 0)}
               </p>
               <p className="mt-2 text-sm leading-7 text-slate-600">
-                商品データと順位データを分離し、差し替えやすい構造にしています。
+                成分や使い心地まで見比べながら、候補を絞り込める構成です。
               </p>
             </div>
             <div className="glass-panel rounded-[1.5rem] p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-slate-500">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/85 text-slate-700 shadow-[0_12px_30px_rgba(148,163,184,0.16)]">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="h-5 w-5"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M7.25 5.75h7.5l3 3v9.5a1.5 1.5 0 0 1-1.5 1.5h-9.5a1.5 1.5 0 0 1-1.5-1.5v-11a1.5 1.5 0 0 1 1.5-1.5z"
+                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14.75 5.75v3h3" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.5 12h6.5M8.5 15.5h4.25" />
+                </svg>
+              </div>
+              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.26em] text-slate-500">
                 Articles
               </p>
-              <p className="mt-3 font-serif text-4xl text-slate-950">
+              <p className="mt-3 font-serif text-4xl tracking-[-0.04em] text-slate-950">
                 {categoryLandingBlocks.reduce((sum, category) => sum + category.articleCount, 0)}
               </p>
               <p className="mt-2 text-sm leading-7 text-slate-600">
-                比較、ランキング、レビュー、悩み解決の4タイプで回遊できます。
+                比較、ランキング、読み物を横断して、必要な判断材料を拾えます。
               </p>
             </div>
           </div>
