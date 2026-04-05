@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ComparisonTable } from "@/components/comparison-table";
-import { PostCard } from "@/components/post-card";
+import { PostGrid } from "@/components/post-grid";
 import { ProductCard } from "@/components/product-card";
 import {
   formatDate,
@@ -11,6 +11,7 @@ import {
   getArticleTypeLabel,
   getPostBodyText,
   getPostBySlug,
+  getPostMetaDescription,
   getProductsByIds,
   getRelatedPosts,
   type ArticleType,
@@ -52,7 +53,9 @@ const ctaCopy = {
 >;
 
 export async function generateStaticParams() {
-  return getAllPosts().map((post) => ({
+  const posts = await getAllPosts();
+
+  return posts.map((post) => ({
     slug: post.slug,
   }));
 }
@@ -61,7 +64,7 @@ export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -69,9 +72,11 @@ export async function generateMetadata({
     };
   }
 
+  const metaDescription = getPostMetaDescription(post);
+
   return {
     title: post.title,
-    description: post.description,
+    description: metaDescription,
     keywords: post.keywords,
     alternates: {
       canonical: `/articles/${post.slug}`,
@@ -81,7 +86,7 @@ export async function generateMetadata({
       locale: siteConfig.locale,
       url: `/articles/${post.slug}`,
       title: post.title,
-      description: post.description,
+      description: metaDescription,
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
       authors: [post.author],
@@ -98,7 +103,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: post.title,
-      description: post.description,
+      description: metaDescription,
       images: [`/articles/${post.slug}/opengraph-image`],
     },
   };
@@ -106,21 +111,22 @@ export async function generateMetadata({
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const relatedPosts = getRelatedPosts(post.slug);
+  const relatedPosts = await getRelatedPosts(post.slug);
   const products = getProductsByIds(post.productIds);
   const primaryProduct = products[0];
   const articleCta = ctaCopy[post.articleType];
+  const metaDescription = getPostMetaDescription(post);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
-    description: post.description,
+    description: metaDescription,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
     inLanguage: "ja-JP",
@@ -141,13 +147,27 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     },
     mainEntityOfPage: absoluteUrl(`/articles/${post.slug}`),
     articleBody: getPostBodyText(post),
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    ...(typeof post.rankingRank === "number" ? { position: post.rankingRank } : {}),
+    ...(post.affiliateUrl
+      ? {
+          potentialAction: {
+            "@type": "ViewAction",
+            target: post.affiliateUrl,
+          },
+        }
+      : {}),
   };
 
   return (
     <div className="pb-20">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <article className="mx-auto w-full max-w-6xl px-6 py-8 sm:px-8 lg:px-12 lg:py-10">
@@ -421,11 +441,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               関連記事
             </h2>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {relatedPosts.map((relatedPost) => (
-              <PostCard key={relatedPost.slug} post={relatedPost} />
-            ))}
-          </div>
+          <PostGrid
+            posts={relatedPosts}
+            gridClassName="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+            emptyTitle="関連記事を準備中です"
+            emptyDescription="同カテゴリや同タイプの記事が追加されると、ここに自動で表示されます。"
+          />
         </section>
       ) : null}
     </div>

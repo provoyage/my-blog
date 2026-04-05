@@ -15,7 +15,7 @@ type ArticleOgImageProps = {
 
 export default async function Image({ params }: ArticleOgImageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   return new ImageResponse(
     (

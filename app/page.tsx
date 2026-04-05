@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { PostGrid } from "@/components/post-grid";
 import { PostCard } from "@/components/post-card";
 import { ProductCard } from "@/components/product-card";
 import {
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const featuredPost = await getFeaturedPost();
-  const categories = getCategoryWithCounts();
+  const categories = await getCategoryWithCounts();
   const topRankedProducts = getTopRankedProducts(3);
   const featuredComparison = await getFeaturedComparisonPost();
   const featuredRanking = await getFeaturedRankingPost();
@@ -185,7 +186,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="categories" className="mx-auto w-full max-w-7xl px-6 py-4 sm:px-8 lg:px-12">
+      <section
+        id="categories"
+        className="mx-auto w-full max-w-7xl scroll-mt-28 px-6 py-4 sm:px-8 lg:px-12"
+      >
         <div className="mb-6 flex items-end justify-between gap-4">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
@@ -258,7 +262,7 @@ export default async function Home() {
 
       <section
         id="overall-ranking"
-        className="mx-auto w-full max-w-7xl px-6 py-8 sm:px-8 lg:px-12"
+        className="mx-auto w-full max-w-7xl scroll-mt-28 px-6 py-8 sm:px-8 lg:px-12"
       >
         <div className="mb-6 flex items-end justify-between gap-4">
           <div>
@@ -280,7 +284,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 py-6 sm:px-8 lg:px-12">
+      <section id="articles" className="mx-auto w-full max-w-7xl scroll-mt-28 px-6 py-6 sm:px-8 lg:px-12">
         <div className="mb-6">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
             Category Rankings
@@ -427,11 +431,11 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {popularPosts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
+        <PostGrid
+          posts={popularPosts}
+          emptyTitle="人気記事を準備中です"
+          emptyDescription="Sanity に人気記事が追加されると、ここにカード形式で表示されます。"
+        />
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-6 py-6 sm:px-8 lg:px-12">
@@ -452,11 +456,11 @@ export default async function Home() {
           </Link>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {latestPosts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
+        <PostGrid
+          posts={latestPosts}
+          emptyTitle="新着記事を準備中です"
+          emptyDescription="最初の記事が公開されると、新着カードが自動でここに並びます。"
+        />
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-6 py-10 sm:px-8 lg:px-12">

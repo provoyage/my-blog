@@ -60,6 +60,7 @@ export type PostSeed = {
   title: string;
   description: string;
   excerpt: string;
+  seoDescription?: string;
   image: string;
   imageAlt: string;
   categorySlug: CategorySlug;
@@ -79,6 +80,9 @@ export type PostSeed = {
   sections: PostSection[];
   productIds?: string[];
   rankingKey?: RankingKey;
+  rankingRank?: number;
+  affiliateUrl?: string;
+  affiliateLabel?: string;
 };
 
 export type Post = PostSeed & {

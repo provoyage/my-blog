@@ -39,6 +39,9 @@ type SanityImageSource =
 type SanityPostDocument = {
   title?: string | null;
   slug?: string | null;
+  description?: string | null;
+  excerpt?: string | null;
+  seoDescription?: string | null;
   mainImage?: SanityImageSource;
   category?:
     | string
@@ -50,6 +53,9 @@ type SanityPostDocument = {
       }
     | null;
   articleType?: string | null;
+  rankingRank?: number | null;
+  affiliateUrl?: string | null;
+  affiliateLabel?: string | null;
   publishedAt?: string | null;
 };
 
@@ -89,18 +95,33 @@ const localPostMap = new Map<string, Post>(allPosts.map((post) => [post.slug, po
 const sanityPostQuery = `*[_type == "post"]{
   title,
   "slug": slug.current,
+  description,
+  excerpt,
+  seoDescription,
   mainImage,
   category,
   articleType,
+  rankingRank,
+  affiliateUrl,
+  affiliateLabel,
   publishedAt
 }`;
+
+function truncateText(value: string, maxLength: number) {
+  if (value.length <= maxLength) {
+    return value;
+  }
+
+  return `${value.slice(0, maxLength - 1).trimEnd()}…`;
+}
 
 const emptyFeaturedPost: Post = {
   slug: "",
   title: "記事を準備中です",
   description: "Sanity に記事が登録されるとここに表示されます。",
   excerpt: "Sanity に記事が登録されるとここに表示されます。",
-  image: categories[0]?.image ?? "/images/placeholder.jpg",
+  seoDescription: "Sanity に記事がまだありません。公開されるとここに表示されます。",
+  image: categories[0]?.image ?? "/media/categories/gray-hair.jpg",
   imageAlt: "記事準備中",
   categorySlug: "gray-hair-scalp",
   categoryName: categoryMap.get("gray-hair-scalp")?.name ?? "記事",
@@ -118,6 +139,7 @@ const emptyFeaturedPost: Post = {
   ctaText: "詳しく見る",
   sections: [],
   productIds: [],
+  affiliateLabel: "公式サイトを見る",
 };
 
 function extractCategoryValue(category: SanityPostDocument["category"]) {
@@ -218,11 +240,20 @@ function normalizeSanityPost(document: SanityPostDocument): Post | null {
     localPost?.excerpt ??
     `${categoryName}に関する${getArticleTypeLabel(articleType)}記事です。`;
 
+  const normalizedDescription = document.description ?? localPost?.description ?? document.title;
+  const normalizedExcerpt =
+    document.excerpt ?? localPost?.excerpt ?? excerpt ?? truncateText(normalizedDescription, 110);
+  const normalizedSeoDescription =
+    document.seoDescription ??
+    localPost?.seoDescription ??
+    truncateText(document.excerpt ?? normalizedDescription, 140);
+
   return {
     slug: document.slug,
     title: document.title,
-    description: localPost?.description ?? document.title,
-    excerpt,
+    description: normalizedDescription,
+    excerpt: normalizedExcerpt,
+    seoDescription: normalizedSeoDescription,
     image,
     imageAlt: localPost?.imageAlt ?? document.title,
     categorySlug,
@@ -243,6 +274,9 @@ function normalizeSanityPost(document: SanityPostDocument): Post | null {
     sections: localPost?.sections ?? [],
     productIds: localPost?.productIds ?? [],
     rankingKey: localPost?.rankingKey,
+    rankingRank: document.rankingRank ?? localPost?.rankingRank,
+    affiliateUrl: document.affiliateUrl ?? localPost?.affiliateUrl,
+    affiliateLabel: document.affiliateLabel ?? localPost?.affiliateLabel ?? "公式サイトを見る",
   };
 }
 
@@ -267,7 +301,7 @@ const getDisplayPosts = cache(async () => {
   const sanityPosts = await getSanityPosts();
 
   if (sanityPosts.length === 0) {
-    return getAllPosts();
+    return getSeedPosts();
   }
 
   const mergedPosts = new Map<string, Post>(allPosts.map((post) => [post.slug, post]));
@@ -338,14 +372,19 @@ export function getFeaturedProducts(limit = 4) {
   return getProductsByIds([...new Set(featuredIds)]).slice(0, limit);
 }
 
-export function getAllPosts() {
+function getSeedPosts() {
   return [...allPosts].sort(
     (left, right) => Date.parse(right.publishedAt) - Date.parse(left.publishedAt),
   );
 }
 
-export function getPostBySlug(slug: string) {
-  return allPosts.find((post) => post.slug === slug);
+export async function getAllPosts() {
+  return getDisplayPosts();
+}
+
+export async function getPostBySlug(slug: string) {
+  const posts = await getDisplayPosts();
+  return posts.find((post) => post.slug === slug);
 }
 
 export async function getPostsByCategory(categorySlug: CategorySlug) {
@@ -353,8 +392,9 @@ export async function getPostsByCategory(categorySlug: CategorySlug) {
   return posts.filter((post) => post.categorySlug === categorySlug);
 }
 
-export function getPostsByType(articleType: ArticleType) {
-  return getAllPosts().filter((post) => post.articleType === articleType);
+export async function getPostsByType(articleType: ArticleType) {
+  const posts = await getDisplayPosts();
+  return posts.filter((post) => post.articleType === articleType);
 }
 
 export async function getLatestPosts(limit = 4) {
@@ -392,14 +432,15 @@ export async function getFeaturedRankingPost() {
     .sort((left, right) => right.popularity - left.popularity)[0];
 }
 
-export function getRelatedPosts(slug: string, limit = 3) {
-  const currentPost = getPostBySlug(slug);
+export async function getRelatedPosts(slug: string, limit = 3) {
+  const posts = await getDisplayPosts();
+  const currentPost = posts.find((post) => post.slug === slug);
 
   if (!currentPost) {
     return [];
   }
 
-  return [...allPosts]
+  return [...posts]
     .filter((post) => post.slug !== slug)
     .sort((left, right) => {
       const leftScore =
@@ -420,10 +461,16 @@ export function getPostBodyText(post: Post) {
   return post.sections.map((section) => `${section.heading}\n${section.body}`).join("\n\n");
 }
 
-export function getCategoryWithCounts() {
+export function getPostMetaDescription(post: Post) {
+  return truncateText(post.seoDescription ?? post.description ?? post.excerpt ?? post.title, 140);
+}
+
+export async function getCategoryWithCounts() {
+  const posts = await getDisplayPosts();
+
   return categories.map((category) => ({
     ...category,
     productCount: products.filter((product) => product.categorySlug === category.slug).length,
-    articleCount: allPosts.filter((post) => post.categorySlug === category.slug).length,
+    articleCount: posts.filter((post) => post.categorySlug === category.slug).length,
   }));
 }
