@@ -8,9 +8,11 @@ import type {
   CategorySlug,
   MediaCategory,
   Post,
+  PortableBodyNode,
   Product,
   RankingKey,
 } from "@/lib/data/types";
+import { getPortableTextPlainText } from "@/lib/portable-text";
 import { client, hasSanityConfig, sanityDataset, sanityProjectId } from "@/lib/sanity";
 
 export type {
@@ -19,6 +21,7 @@ export type {
   ComparisonPoint,
   MediaCategory,
   Post,
+  PortableBodyNode,
   PostSection,
   Product,
   RankingKey,
@@ -31,6 +34,12 @@ type SanityImageSource =
         _id?: string;
         _ref?: string;
         url?: string;
+        metadata?: {
+          dimensions?: {
+            width?: number;
+            height?: number;
+          };
+        };
       } | null;
     }
   | null
@@ -53,10 +62,12 @@ type SanityPostDocument = {
       }
     | null;
   articleType?: string | null;
+  targetConcern?: string[] | null;
   rankingRank?: number | null;
   affiliateUrl?: string | null;
   affiliateLabel?: string | null;
   publishedAt?: string | null;
+  body?: PortableBodyNode[] | null;
 };
 
 export const articleTypeLabels: Record<ArticleType, string> = {
@@ -101,10 +112,26 @@ const sanityPostQuery = `*[_type == "post"]{
   mainImage,
   category,
   articleType,
+  targetConcern,
   rankingRank,
   affiliateUrl,
   affiliateLabel,
-  publishedAt
+  publishedAt,
+  body[]{
+    ...,
+    markDefs[]{
+      ...
+    },
+    _type == "image" => {
+      ...,
+      asset->{
+        url,
+        metadata {
+          dimensions
+        }
+      }
+    }
+  }
 }`;
 
 function truncateText(value: string, maxLength: number) {
@@ -138,6 +165,7 @@ const emptyFeaturedPost: Post = {
   summaryPoints: [],
   ctaText: "詳しく見る",
   sections: [],
+  body: [],
   productIds: [],
   affiliateLabel: "公式サイトを見る",
 };
@@ -235,7 +263,11 @@ function normalizeSanityPost(document: SanityPostDocument): Post | null {
     localPost?.image ??
     categoryMeta?.image ??
     emptyFeaturedPost.image;
-  const targetConcern = localPost?.targetConcern ?? categoryMeta?.concerns.slice(0, 2) ?? [categoryName];
+  const targetConcern =
+    document.targetConcern?.filter((value): value is string => typeof value === "string") ??
+    localPost?.targetConcern ??
+    categoryMeta?.concerns.slice(0, 2) ??
+    [categoryName];
   const excerpt =
     localPost?.excerpt ??
     `${categoryName}に関する${getArticleTypeLabel(articleType)}記事です。`;
@@ -272,6 +304,7 @@ function normalizeSanityPost(document: SanityPostDocument): Post | null {
     summaryPoints: localPost?.summaryPoints ?? targetConcern,
     ctaText: localPost?.ctaText ?? "詳しく見る",
     sections: localPost?.sections ?? [],
+    body: document.body ?? localPost?.body ?? [],
     productIds: localPost?.productIds ?? [],
     rankingKey: localPost?.rankingKey,
     rankingRank: document.rankingRank ?? localPost?.rankingRank,
@@ -458,6 +491,10 @@ export async function getRelatedPosts(slug: string, limit = 3) {
 }
 
 export function getPostBodyText(post: Post) {
+  if (post.body && post.body.length > 0) {
+    return getPortableTextPlainText(post.body);
+  }
+
   return post.sections.map((section) => `${section.heading}\n${section.body}`).join("\n\n");
 }
 

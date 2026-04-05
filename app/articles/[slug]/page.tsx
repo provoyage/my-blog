@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ComparisonTable } from "@/components/comparison-table";
+import { PortableTextContent } from "@/components/portable-text-content";
 import { PostGrid } from "@/components/post-grid";
 import { ProductCard } from "@/components/product-card";
 import {
@@ -16,6 +17,7 @@ import {
   getRelatedPosts,
   type ArticleType,
 } from "@/lib/posts";
+import { getPortableTextHeadings } from "@/lib/portable-text";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 type ArticlePageProps = {
@@ -122,6 +124,15 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const primaryProduct = products[0];
   const articleCta = ctaCopy[post.articleType];
   const metaDescription = getPostMetaDescription(post);
+  const articleHeadings =
+    post.body && post.body.length > 0
+      ? getPortableTextHeadings(post.body)
+      : post.sections.map((section, index) => ({
+          id: section.id,
+          title: section.heading,
+          level: 2 as const,
+          order: index,
+        }));
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -318,8 +329,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               ) : null}
 
               <div className="article-content mt-10">
-                {post.sections.map((section, index) => (
-                  <section key={section.id} id={section.id}>
+                {post.body && post.body.length > 0 ? (
+                  <PortableTextContent value={post.body} />
+                ) : (
+                  post.sections.map((section, index) => (
+                    <section key={section.id} id={section.id}>
                     <h2>{section.heading}</h2>
                     <p>{section.body}</p>
 
@@ -353,8 +367,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                         </div>
                       </div>
                     ) : null}
-                  </section>
-                ))}
+                    </section>
+                  ))
+                )}
               </div>
 
               {primaryProduct ? (
@@ -395,13 +410,19 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   Table Of Contents
                 </p>
                 <nav className="mt-4 space-y-3 text-sm leading-7 text-slate-600">
-                  {post.sections.map((section, index) => (
+                  {articleHeadings.map((section, index) => (
                     <a
                       key={section.id}
                       href={`#${section.id}`}
-                      className="block rounded-2xl bg-white/70 px-4 py-3 transition hover:bg-white hover:text-slate-950"
+                      className={`block rounded-2xl bg-white/70 px-4 py-3 transition hover:bg-white hover:text-slate-950 ${
+                        section.level === 3
+                          ? "ml-3"
+                          : section.level === 4
+                            ? "ml-6"
+                            : ""
+                      }`}
                     >
-                      {index + 1}. {section.heading}
+                      {index + 1}. {section.title}
                     </a>
                   ))}
                 </nav>
