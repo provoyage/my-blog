@@ -2,6 +2,8 @@ import { ImageResponse } from "next/og";
 import { getPostBySlug } from "@/lib/posts";
 import { siteConfig } from "@/lib/site";
 
+export const runtime = "edge";
+
 export const size = {
   width: 1200,
   height: 630,

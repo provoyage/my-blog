@@ -4,6 +4,8 @@ import Link from "next/link";
 import { NextStudio } from "next-sanity/studio";
 import config from "@/sanity.config";
 
+export const runtime = "edge";
+
 const sanityProjectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "";
 const sanityDataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
 const validProjectIdPattern = /^[a-z0-9-]+$/;
