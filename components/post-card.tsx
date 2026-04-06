@@ -67,7 +67,9 @@ export function PostCard({
       <Link href={articleHref} className="block">
         <div
           className={`relative overflow-hidden ${
-            featured ? "aspect-[4/5] min-h-[20rem] sm:min-h-[24rem]" : "aspect-[4/3]"
+            featured
+              ? "aspect-[16/10] min-h-[16rem] sm:min-h-[18rem] lg:min-h-[19rem]"
+              : "aspect-[4/3]"
           }`}
         >
           <Image
@@ -109,7 +111,7 @@ export function PostCard({
           <h3
             className={`mt-4 font-serif tracking-[-0.03em] text-slate-950 transition group-hover:text-slate-700 ${
               featured
-                ? "text-3xl leading-[1.08] tracking-[-0.04em] sm:text-[2.55rem]"
+                ? "overflow-hidden text-3xl leading-[1.08] tracking-[-0.04em] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] sm:text-[2.2rem]"
                 : "text-2xl leading-snug"
             }`}
           >
@@ -118,7 +120,9 @@ export function PostCard({
 
           <p
             className={`mt-4 text-slate-600 ${
-              featured ? "text-base leading-8" : "text-sm leading-7"
+              featured
+                ? "overflow-hidden text-base leading-8 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3]"
+                : "text-sm leading-7"
             }`}
           >
             {summary}

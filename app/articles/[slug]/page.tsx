@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArticleToc } from "@/components/article-toc";
 import { ComparisonTable } from "@/components/comparison-table";
 import { PortableTextContent } from "@/components/portable-text-content";
 import { PostGrid } from "@/components/post-grid";
@@ -182,8 +183,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       />
 
       <article className="mx-auto w-full max-w-6xl px-6 py-8 sm:px-8 lg:px-12 lg:py-10">
-        <div className="glass-panel overflow-hidden rounded-[2.25rem]">
-          <div className="relative aspect-[16/9] min-h-[20rem]">
+        <div className="glass-panel overflow-hidden rounded-[2.25rem] lg:overflow-visible">
+          <div className="relative aspect-[16/9] min-h-[20rem] overflow-hidden rounded-t-[2.25rem]">
             <Image
               src={post.image}
               alt={post.imageAlt}
@@ -404,30 +405,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               ) : null}
             </div>
 
-            <aside className="space-y-5">
-              <div className="glass-panel rounded-[1.6rem] p-5 lg:sticky lg:top-24">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
-                  Table Of Contents
-                </p>
-                <nav className="mt-4 space-y-3 text-sm leading-7 text-slate-600">
-                  {articleHeadings.map((section, index) => (
-                    <a
-                      key={section.id}
-                      href={`#${section.id}`}
-                      className={`block rounded-2xl bg-white/70 px-4 py-3 transition hover:bg-white hover:text-slate-950 ${
-                        section.level === 3
-                          ? "ml-3"
-                          : section.level === 4
-                            ? "ml-6"
-                            : ""
-                      }`}
-                    >
-                      {index + 1}. {section.title}
-                    </a>
-                  ))}
-                </nav>
-
-                <div className="mt-5 rounded-[1.3rem] bg-stone-50 px-4 py-4">
+            <aside className="space-y-5 lg:sticky lg:top-24 lg:flex lg:h-[calc(100vh-7rem)] lg:flex-col lg:self-start">
+              <ArticleToc items={articleHeadings} />
+              <div className="glass-panel rounded-[1.6rem] p-5 lg:flex-none">
+                <div className="rounded-[1.3rem] bg-stone-50 px-4 py-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
                     Article Data
                   </p>

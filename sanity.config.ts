@@ -3,16 +3,22 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { schemaTypes } from "./sanity/schemaTypes";
 
-const sanityProjectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "";
-const sanityDataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
+// 独立したStudioとしてデプロイするため、IDを直接指定します
+const sanityProjectId = "l1iirws1"; 
+const sanityDataset = "production";
 
 export default defineConfig({
   name: "default",
   title: "Karada Henshubu Studio",
-  projectId: sanityProjectId || "placeholder",
+  
+  projectId: sanityProjectId,
   dataset: sanityDataset,
-  basePath: "/studio",
+  
+  // Vercel配下（/studio）ではなく独自ドメイン直下で動かすため、basePathを削除または「/」にします
+  basePath: "/", 
+
   plugins: [structureTool(), visionTool()],
+  
   schema: {
     types: schemaTypes,
   },

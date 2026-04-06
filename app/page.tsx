@@ -65,9 +65,9 @@ export default async function Home() {
 
           <div className="space-y-7">
             <h1 className="max-w-4xl font-serif text-[3.7rem] leading-[0.94] tracking-[-0.075em] text-slate-950 text-balance sm:text-[4.6rem] lg:text-[5.7rem]">
-              10年前の鏡が、
+              その悩み、
               <br />
-              怖くなくなる。
+              選び方で変わる。
             </h1>
             <p className="max-w-xl text-base leading-8 tracking-[0.01em] text-slate-600 sm:text-lg">
               年齢のサインに静かに向き合いながら、品よく整えるための選び方だけを集めました。

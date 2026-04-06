@@ -24,7 +24,7 @@ export function SiteShell({ children }: SiteShellProps) {
   }
 
   return (
-    <div className="relative isolate flex min-h-screen flex-col overflow-hidden">
+    <div className="relative isolate flex min-h-screen flex-col">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-[-16rem] z-0 h-[34rem] bg-[radial-gradient(circle_at_top,_rgba(242,202,194,0.52),_transparent_55%),radial-gradient(circle_at_80%_18%,_rgba(206,222,214,0.38),_transparent_30%)]"
@@ -84,6 +84,12 @@ export function SiteShell({ children }: SiteShellProps) {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                href="/operator"
+                className="rounded-full border border-slate-200 bg-white/80 px-4 py-2 transition hover:border-slate-400 hover:text-slate-950"
+              >
+                運営者情報
+              </Link>
             </nav>
 
             <div className="space-y-2">
