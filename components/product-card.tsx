@@ -9,7 +9,7 @@ type ProductCardProps = {
 
 export function ProductCard({ product, rank }: ProductCardProps) {
   return (
-    <article className="glass-panel flex h-full flex-col overflow-hidden rounded-[1.9rem]">
+    <article className="glass-panel flex h-full min-w-0 flex-col overflow-hidden rounded-[1.9rem]">
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={product.image}
@@ -19,7 +19,7 @@ export function ProductCard({ product, rank }: ProductCardProps) {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-slate-950/10 to-transparent" />
-        <div className="absolute left-5 top-5 flex flex-wrap gap-2">
+        <div className="absolute left-4 top-4 flex max-w-[calc(100%-2rem)] flex-wrap gap-2 sm:left-5 sm:top-5">
           {typeof rank === "number" ? (
             <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold text-white">
               {rank}位
@@ -31,17 +31,17 @@ export function ProductCard({ product, rank }: ProductCardProps) {
         </div>
       </div>
 
-      <div className="flex h-full flex-col p-6">
-        <div className="flex items-start justify-between gap-4">
-          <div>
+      <div className="flex h-full min-w-0 flex-col p-5 sm:p-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
               {product.brand}
             </p>
-            <h3 className="mt-3 font-serif text-2xl leading-snug tracking-[-0.03em] text-slate-950">
+            <h3 className="mt-3 break-words font-serif text-xl leading-snug tracking-[-0.03em] text-slate-950 sm:text-2xl">
               {product.name}
             </h3>
           </div>
-          <div className="rounded-[1.2rem] bg-stone-50 px-3 py-2 text-right">
+          <div className="self-start rounded-[1.2rem] bg-stone-50 px-3 py-2 text-left sm:text-right">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
               Score
             </p>
@@ -54,14 +54,14 @@ export function ProductCard({ product, rank }: ProductCardProps) {
             評価 {product.rating.toFixed(1)}
           </span>
           <span className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-700">
-            口コミ {product.reviewCount.toLocaleString()}件
+            レビュー {product.reviewCount.toLocaleString()}件
           </span>
           <span className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-700">
             {product.priceLabel}
           </span>
         </div>
 
-        <p className="mt-4 text-sm leading-7 text-slate-600">{product.summary}</p>
+        <p className="mt-4 break-words text-sm leading-7 text-slate-600">{product.summary}</p>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {product.featureLabels.map((label) => (
@@ -76,7 +76,7 @@ export function ProductCard({ product, rank }: ProductCardProps) {
 
         <div className="mt-5 rounded-[1.5rem] bg-stone-50 px-4 py-4">
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
-            注目ポイント
+            この商品の強み
           </p>
           <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-700">
             {product.strengths.map((strength) => (
@@ -99,20 +99,20 @@ export function ProductCard({ product, rank }: ProductCardProps) {
           {product.caution}
         </p>
 
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           {product.reviewArticleSlug ? (
             <Link
               href={`/articles/${product.reviewArticleSlug}`}
-              className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-500"
+              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-500"
             >
-              レビューを見る
+              レビュー記事を見る
             </Link>
           ) : null}
           <a
             href={product.affiliateUrl}
             target="_blank"
             rel="nofollow sponsored"
-            className="rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
+            className="inline-flex items-center justify-center rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
           >
             {product.ctaLabel}
           </a>

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "40代 女性 美容",
     "比較 メディア",
     "ランキング 記事",
-    "白髪 乾燥 ニオイ",
+    "白髪 乾燥 くすみ",
     "美容 アフィリエイト",
   ],
   category: "beauty",
@@ -83,7 +83,7 @@ export default function RootLayout({
       lang="ja"
       className={`${notoSansJp.variable} ${shipporiMincho.variable} h-full`}
     >
-      <body className="min-h-full bg-background text-foreground antialiased">
+      <body className="min-h-full overflow-x-clip bg-background text-foreground antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

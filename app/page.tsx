@@ -57,20 +57,20 @@ export default async function Home() {
 
   return (
     <div className="pb-20">
-      <section className="mx-auto grid w-full max-w-7xl gap-10 px-6 pb-10 pt-10 sm:px-8 lg:grid-cols-[1.02fr_0.98fr] lg:px-12 lg:pb-14 lg:pt-14 xl:gap-14">
-        <div className="space-y-8 lg:pr-10 xl:pr-20">
+      <section className="mx-auto grid w-full max-w-7xl gap-8 px-4 pb-10 pt-8 sm:px-8 lg:grid-cols-[1.02fr_0.98fr] lg:gap-10 lg:px-12 lg:pb-14 lg:pt-14 xl:gap-14">
+        <div className="min-w-0 space-y-8 lg:pr-10 xl:pr-20">
           <span className="inline-flex rounded-full border border-white/70 bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-slate-600 backdrop-blur">
-            40代女性の見た目悩みに特化した比較メディア
+            40代女性の見た目悩みに寄り添う比較メディア
           </span>
 
           <div className="space-y-7">
-            <h1 className="max-w-4xl font-serif text-[3.7rem] leading-[0.94] tracking-[-0.075em] text-slate-950 text-balance sm:text-[4.6rem] lg:text-[5.7rem]">
-              その悩み、
+            <h1 className="max-w-4xl break-words font-serif text-[2.9rem] leading-[0.98] tracking-[-0.07em] text-slate-950 text-balance sm:text-[4.2rem] lg:text-[5.7rem]">
+              その悩みに静かに向き合い、
               <br />
-              選び方で変わる。
+              選び方だけを整える。
             </h1>
             <p className="max-w-xl text-base leading-8 tracking-[0.01em] text-slate-600 sm:text-lg">
-              年齢のサインに静かに向き合いながら、品よく整えるための選び方だけを集めました。
+              年齢のサインに向き合いながら、無理なく続けやすいケアや選び方を比較で整理しました。
             </p>
           </div>
 
@@ -89,7 +89,7 @@ export default async function Home() {
             </Link>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-3">
             <div className="glass-panel rounded-[1.5rem] p-5">
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/85 text-slate-700 shadow-[0_12px_30px_rgba(148,163,184,0.16)]">
                 <svg
@@ -176,7 +176,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="glass-panel rounded-[2rem] p-6">
+        <div className="glass-panel min-w-0 rounded-[2rem] p-5 sm:p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
             Featured Guide
           </p>
@@ -188,9 +188,9 @@ export default async function Home() {
 
       <section
         id="categories"
-        className="mx-auto w-full max-w-7xl scroll-mt-28 px-6 py-4 sm:px-8 lg:px-12"
+        className="mx-auto w-full max-w-7xl scroll-mt-28 px-4 py-4 sm:px-8 lg:px-12"
       >
-        <div className="mb-6 flex items-end justify-between gap-4">
+        <div className="mb-6 flex flex-col items-start gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
               Concern Categories
@@ -200,7 +200,7 @@ export default async function Home() {
             </h2>
           </div>
           <p className="hidden max-w-xl text-sm leading-7 text-slate-500 lg:block">
-            カテゴリごとにランキング記事と比較記事を用意し、トップからすぐに購入検討へ進める導線にしています。
+            カテゴリごとにランキング記事と比較記事を用意し、トップからすぐに導線へ進める構成にしています。
           </p>
         </div>
 
@@ -262,9 +262,9 @@ export default async function Home() {
 
       <section
         id="overall-ranking"
-        className="mx-auto w-full max-w-7xl scroll-mt-28 px-6 py-8 sm:px-8 lg:px-12"
+        className="mx-auto w-full max-w-7xl scroll-mt-28 px-4 py-8 sm:px-8 lg:px-12"
       >
-        <div className="mb-6 flex items-end justify-between gap-4">
+        <div className="mb-6 flex flex-col items-start gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
               Main Ranking
@@ -274,7 +274,7 @@ export default async function Home() {
             </h2>
           </div>
           <p className="hidden max-w-xl text-sm leading-7 text-slate-500 lg:block">
-            カテゴリ横断で訴求力と選ばれやすさの高い商品をまとめています。
+            カテゴリ横断で評価軸と選ばれやすさの強い商品をまとめています。
           </p>
         </div>
         <div className="grid gap-6 lg:grid-cols-3">
@@ -284,13 +284,13 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="articles" className="mx-auto w-full max-w-7xl scroll-mt-28 px-6 py-6 sm:px-8 lg:px-12">
+      <section id="articles" className="mx-auto w-full max-w-7xl scroll-mt-28 px-4 py-6 sm:px-8 lg:px-12">
         <div className="mb-6">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
             Category Rankings
           </p>
           <h2 className="mt-2 font-serif text-3xl tracking-[-0.03em] text-slate-950 sm:text-4xl">
-            各カテゴリの人気商品ランキング
+            各カテゴリの人気ランキング
           </h2>
         </div>
 
@@ -310,7 +310,7 @@ export default async function Home() {
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/75">
                     {category.name}
                   </p>
-                  <h3 className="mt-2 font-serif text-3xl">人気商品ランキング</h3>
+                  <h3 className="mt-2 font-serif text-3xl">人気ランキング</h3>
                   <p className="mt-3 max-w-2xl text-sm leading-7 text-white/82">
                     {category.description}
                   </p>
@@ -381,18 +381,18 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="comparison" className="mx-auto w-full max-w-7xl px-6 py-8 sm:px-8 lg:px-12">
-        <div className="mb-6 flex items-end justify-between gap-4">
+      <section id="comparison" className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-8 lg:px-12">
+        <div className="mb-6 flex flex-col items-start gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
               Comparison Funnel
             </p>
             <h2 className="mt-2 font-serif text-3xl tracking-[-0.03em] text-slate-950 sm:text-4xl">
-              比較・ランキング導線
+              比較記事へつなぐ導線
             </h2>
           </div>
           <p className="hidden max-w-xl text-sm leading-7 text-slate-500 lg:block">
-            まずは比較で違いを理解し、その後にランキングやレビューで候補を絞る構成です。
+            まずは比較で違いを整理し、その後にランキングやレビューで候補を絞る流れです。
           </p>
         </div>
 
@@ -402,7 +402,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 py-6 sm:px-8 lg:px-12">
+      <section className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-8 lg:px-12">
         <div className="mb-6">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
             Recommended Products
@@ -419,8 +419,8 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 py-6 sm:px-8 lg:px-12">
-        <div className="mb-6 flex items-end justify-between gap-4">
+      <section className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-8 lg:px-12">
+        <div className="mb-6 flex flex-col items-start gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
               Popular Articles
@@ -434,12 +434,12 @@ export default async function Home() {
         <PostGrid
           posts={popularPosts}
           emptyTitle="人気記事を準備中です"
-          emptyDescription="Sanity に人気記事が追加されると、ここにカード形式で表示されます。"
+          emptyDescription="Sanity に人気記事が追加されると、このエリアにカード形式で表示されます。"
         />
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 py-6 sm:px-8 lg:px-12">
-        <div className="mb-6 flex items-end justify-between gap-4">
+      <section className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-8 lg:px-12">
+        <div className="mb-6 flex flex-col items-start gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
               New Articles
@@ -459,11 +459,11 @@ export default async function Home() {
         <PostGrid
           posts={latestPosts}
           emptyTitle="新着記事を準備中です"
-          emptyDescription="最初の記事が公開されると、新着カードが自動でここに並びます。"
+          emptyDescription="最新記事が公開されると、自動でここに並びます。"
         />
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 py-10 sm:px-8 lg:px-12">
+      <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-8 lg:px-12">
         <div className="glass-panel rounded-[2rem] p-6 sm:p-8">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
             Operating Policy

@@ -27,28 +27,28 @@ type ArticlePageProps = {
 
 const ctaCopy = {
   comparison: {
-    eyebrow: "比較から次の一歩へ",
-    title: "違いを整理したら、公式サイトで条件まで確認する",
+    eyebrow: "比較しながら次の一歩へ",
+    title: "違いを整理したら、公式サイトで詳細まで確認する",
     description:
-      "比較表で違いをつかんだ後は、価格、使い方、定期条件まで公式サイトで確認すると判断が早くなります。",
+      "比較記事で候補をつかんだ後は、価格、使い方、定期条件まで公式サイトで確認すると判断がぶれにくくなります。",
   },
   ranking: {
-    eyebrow: "ランキング上位から確認",
+    eyebrow: "ランキング記事から確認",
     title: "迷ったら上位商品から順にチェックする",
     description:
-      "ランキング記事は候補を絞るための入口です。購入前には公式サイトで内容量や定期条件も確認しておくと安心です。",
+      "ランキング記事は候補を絞るための入口です。気になる商品があれば、公式サイトで成分や価格を確認して納得した上で選べます。",
   },
   review: {
     eyebrow: "レビューから購入判断へ",
-    title: "レビューで不安が減ったら、最後は公式情報を確認する",
+    title: "レビューで使用感が見えたら、最後は公式情報で確認する",
     description:
-      "レビューは向いている人と注意点を整理するためのページです。最後は公式サイトで自分に合う条件かを見て判断します。",
+      "レビューは使い心地や印象差を整理するためのページです。最後は公式サイトで自分に合う条件かを確認して選びましょう。",
   },
   concern: {
-    eyebrow: "悩み整理から候補選びへ",
-    title: "悩みの整理ができたら、比較とランキングへ進む",
+    eyebrow: "悩み解決から商品比較へ",
+    title: "悩みの原因が見えてきたら、比較記事とランキングへ進む",
     description:
-      "悩み解決記事で方向性が固まったら、比較記事とランキング記事で候補を絞り、公式サイトへ進む流れが自然です。",
+      "悩み解決記事で方向性が固まったら、比較記事とランキング記事で候補を絞り、公式サイトへ進める流れです。",
   },
 } satisfies Record<
   ArticleType,
@@ -182,9 +182,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
-      <article className="mx-auto w-full max-w-6xl px-6 py-8 sm:px-8 lg:px-12 lg:py-10">
+      <article className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-8 lg:px-12 lg:py-10">
         <div className="glass-panel overflow-hidden rounded-[2.25rem] lg:overflow-visible">
-          <div className="relative aspect-[16/9] min-h-[20rem] overflow-hidden rounded-t-[2.25rem]">
+          <div className="relative aspect-[4/3] min-h-[15rem] overflow-hidden rounded-t-[2.25rem] sm:aspect-[16/9] sm:min-h-[20rem]">
             <Image
               src={post.image}
               alt={post.imageAlt}
@@ -194,7 +194,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-10">
+            <div className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-10">
               <div className="mb-4 flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.26em] text-white/85">
                 <span>{post.categoryName}</span>
                 <span className="h-1 w-1 rounded-full bg-white/70" />
@@ -204,7 +204,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <span className="h-1 w-1 rounded-full bg-white/70" />
                 <span>{post.readTime}</span>
               </div>
-              <h1 className="max-w-4xl font-serif text-4xl leading-tight tracking-[-0.04em] text-balance sm:text-5xl lg:text-6xl">
+              <h1 className="max-w-4xl break-words font-serif text-3xl leading-tight tracking-[-0.04em] text-balance sm:text-5xl lg:text-6xl">
                 {post.title}
               </h1>
               <p className="mt-4 max-w-3xl text-sm leading-7 text-white/85 sm:text-base">
@@ -213,8 +213,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </div>
           </div>
 
-          <div className="grid gap-10 p-6 sm:p-10 lg:grid-cols-[minmax(0,1fr)_18rem]">
-            <div>
+          <div className="grid gap-8 p-4 sm:gap-10 sm:p-10 lg:grid-cols-[minmax(0,1fr)_18rem]">
+            <div className="min-w-0">
               <nav className="mb-6 text-sm text-slate-500">
                 <Link href="/" className="transition hover:text-slate-950">
                   トップ
@@ -227,24 +227,24 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <span>{post.categoryName}</span>
               </nav>
 
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {post.summaryPoints.map((point) => (
                   <div
                     key={point}
                     className="rounded-[1.5rem] border border-slate-200 bg-white/80 p-5"
                   >
-                    <p className="text-sm leading-7 text-slate-700">{point}</p>
+                    <p className="break-words text-sm leading-7 text-slate-700">{point}</p>
                   </div>
                 ))}
               </div>
 
               {primaryProduct ? (
                 <section className="mt-8 grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
-                  <div className="rounded-[1.75rem] bg-slate-950 p-6 text-white">
+                  <div className="rounded-[1.75rem] bg-slate-950 p-5 text-white sm:p-6">
                     <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
                       {articleCta.eyebrow}
                     </p>
-                    <h2 className="mt-3 font-serif text-3xl leading-tight tracking-[-0.03em]">
+                    <h2 className="mt-3 break-words font-serif text-2xl leading-tight tracking-[-0.03em] sm:text-3xl">
                       {articleCta.title}
                     </h2>
                     <p className="mt-4 text-sm leading-7 text-white/80">{articleCta.description}</p>
@@ -278,11 +278,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                     </div>
                   </div>
 
-                  <div className="rounded-[1.75rem] border border-slate-200 bg-white/85 p-6">
+                  <div className="rounded-[1.75rem] border border-slate-200 bg-white/85 p-5 sm:p-6">
                     <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
                       Lead Product
                     </p>
-                    <h3 className="mt-3 font-serif text-3xl text-slate-950">
+                    <h3 className="mt-3 break-words font-serif text-2xl text-slate-950 sm:text-3xl">
                       {primaryProduct.name}
                     </h3>
                     <div className="mt-4 grid gap-3 text-sm text-slate-600">
@@ -291,7 +291,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                         <p className="mt-1 leading-7">{primaryProduct.score} / 100</p>
                       </div>
                       <div className="rounded-[1.25rem] bg-stone-50 px-4 py-3">
-                        <p className="font-semibold text-slate-900">価格目安</p>
+                        <p className="font-semibold text-slate-900">価格帯</p>
                         <p className="mt-1 leading-7">{primaryProduct.priceLabel}</p>
                       </div>
                       <div className="rounded-[1.25rem] bg-stone-50 px-4 py-3">
@@ -307,7 +307,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <ComparisonTable
                   products={products}
                   title={`${post.categoryName}の比較表`}
-                  description="この記事で取り上げている商品を、使う頻度、向いている悩み、続けやすさまで横並びで比較できます。"
+                  description="この記事で触れている商品を、使いやすさや価格、向いている悩みまで一覧で比較できるようにしています。"
                 />
               ) : null}
 
@@ -323,7 +323,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   </div>
                   <div className="grid gap-5 lg:grid-cols-2">
                     {products.map((product, index) => (
-                      <ProductCard key={product.id} product={product} rank={products.length > 1 ? index + 1 : undefined} />
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        rank={products.length > 1 ? index + 1 : undefined}
+                      />
                     ))}
                   </div>
                 </section>
@@ -335,39 +339,39 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 ) : (
                   post.sections.map((section, index) => (
                     <section key={section.id} id={section.id}>
-                    <h2>{section.heading}</h2>
-                    <p>{section.body}</p>
+                      <h2>{section.heading}</h2>
+                      <p>{section.body}</p>
 
-                    {index === 0 && primaryProduct ? (
-                      <div className="mt-8 rounded-[1.75rem] border border-slate-200 bg-white/90 p-6">
-                        <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
-                          Mid CTA
-                        </p>
-                        <h3 className="mt-3 font-serif text-3xl tracking-[-0.03em] text-slate-950">
-                          候補が見えてきたら、公式サイトで条件を確認する
-                        </h3>
-                        <p className="mt-4 text-sm leading-8 text-slate-600">
-                          比較と悩み整理ができた段階で、価格、使用方法、定期条件まで確認しておくと判断が速くなります。
-                          あわせて関連記事も読むと、他の候補との違いがさらに見えやすくなります。
-                        </p>
-                        <div className="mt-6 flex flex-wrap gap-3">
-                          <a
-                            href={primaryProduct.affiliateUrl}
-                            target="_blank"
-                            rel="nofollow sponsored"
-                            className="rounded-full bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
-                          >
-                            {primaryProduct.ctaLabel}
-                          </a>
-                          <Link
-                            href="/articles"
-                            className="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-800 transition hover:border-slate-500"
-                          >
-                            記事一覧へ戻る
-                          </Link>
+                      {index === 0 && primaryProduct ? (
+                        <div className="mt-8 rounded-[1.75rem] border border-slate-200 bg-white/90 p-6">
+                          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
+                            Mid CTA
+                          </p>
+                          <h3 className="mt-3 break-words font-serif text-2xl tracking-[-0.03em] text-slate-950 sm:text-3xl">
+                            比較で見えてきたら、公式サイトで詳細を確認する
+                          </h3>
+                          <p className="mt-4 text-sm leading-8 text-slate-600">
+                            価格や使い方、定期条件まで公式サイトで確認しておくと、比較だけでは判断しきれない部分も整理しやすくなります。
+                            あわせて関連記事も読むと、商品の違いがさらに見えやすくなります。
+                          </p>
+                          <div className="mt-6 flex flex-wrap gap-3">
+                            <a
+                              href={primaryProduct.affiliateUrl}
+                              target="_blank"
+                              rel="nofollow sponsored"
+                              className="rounded-full bg-slate-950 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
+                            >
+                              {primaryProduct.ctaLabel}
+                            </a>
+                            <Link
+                              href="/articles"
+                              className="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-800 transition hover:border-slate-500"
+                            >
+                              記事一覧へ戻る
+                            </Link>
+                          </div>
                         </div>
-                      </div>
-                    ) : null}
+                      ) : null}
                     </section>
                   ))
                 )}
@@ -378,12 +382,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
                     Final CTA
                   </p>
-                  <h2 className="mt-3 font-serif text-3xl tracking-[-0.03em] text-slate-950">
+                  <h2 className="mt-3 break-words font-serif text-2xl tracking-[-0.03em] text-slate-950 sm:text-3xl">
                     最後にもう一度、公式サイトで詳細を見る
                   </h2>
                   <p className="mt-4 text-sm leading-8 text-slate-600">
-                    比較軸や向いている人が整理できたら、最後は公式サイトで価格や使用条件を確認してください。
-                    読んだ内容と自分の悩みが一致しているかを確認してから進むと、離脱しにくくなります。
+                    比較や読み物で方向性が見えてきたら、最後は公式サイトで価格や使用条件を確認してください。
+                    読み終えた後に候補を整理しておくと、判断がぶれにくくなります。
                   </p>
                   <div className="mt-6 flex flex-wrap gap-3">
                     <a
@@ -405,7 +409,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               ) : null}
             </div>
 
-            <aside className="space-y-5 lg:sticky lg:top-24 lg:flex lg:h-[calc(100vh-7rem)] lg:flex-col lg:self-start">
+            <aside className="min-w-0 space-y-5 lg:sticky lg:top-24 lg:flex lg:h-[calc(100vh-7rem)] lg:flex-col lg:self-start">
               <ArticleToc items={articleHeadings} />
               <div className="glass-panel rounded-[1.6rem] p-5 lg:flex-none">
                 <div className="rounded-[1.3rem] bg-stone-50 px-4 py-4">
@@ -434,7 +438,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       </article>
 
       {relatedPosts.length > 0 ? (
-        <section className="mx-auto w-full max-w-6xl px-6 py-2 sm:px-8 lg:px-12">
+        <section className="mx-auto w-full max-w-6xl px-4 py-2 sm:px-8 lg:px-12">
           <div className="mb-5">
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">
               Related Articles
@@ -447,7 +451,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             posts={relatedPosts}
             gridClassName="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
             emptyTitle="関連記事を準備中です"
-            emptyDescription="同カテゴリや同タイプの記事が追加されると、ここに自動で表示されます。"
+            emptyDescription="同じカテゴリや近いテーマの記事が追加されると、自動でここに表示されます。"
           />
         </section>
       ) : null}

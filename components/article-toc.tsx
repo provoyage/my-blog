@@ -124,17 +124,17 @@ export function ArticleToc({ items }: ArticleTocProps) {
   }
 
   return (
-    <div className="glass-panel rounded-[1.6rem] p-5 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col">
+    <div className="glass-panel rounded-[1.6rem] p-4 sm:p-5 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col">
       <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
         Table Of Contents
       </p>
       <nav
         ref={containerRef}
-        className="mt-4 overflow-hidden text-sm leading-7 text-slate-600 lg:flex-1 lg:min-h-0"
+        className="mt-4 overflow-hidden text-[13px] leading-6 text-slate-600 sm:text-sm sm:leading-7 lg:flex-1 lg:min-h-0"
       >
         <div
           ref={listRef}
-          className="space-y-3 pr-2 transition-transform duration-500 ease-out"
+          className="space-y-3 pr-1 transition-transform duration-500 ease-out sm:pr-2"
           style={{ transform: `translateY(-${listOffset}px)` }}
         >
           {items.map((item, index) => {
@@ -147,7 +147,7 @@ export function ArticleToc({ items }: ArticleTocProps) {
                 onClick={() => setActiveId(item.id)}
                 aria-current={isActive ? "location" : undefined}
                 data-toc-id={item.id}
-                className={`block rounded-2xl px-4 py-3 transition ${
+                className={`block break-words rounded-2xl px-3 py-3 transition sm:px-4 ${
                   isActive
                     ? "border border-amber-200/60 bg-[linear-gradient(135deg,rgba(255,246,230,0.98),rgba(255,239,208,0.92))] text-amber-950 shadow-[0_18px_40px_rgba(217,119,6,0.12)]"
                     : "bg-white/70 hover:bg-white hover:text-slate-950"
