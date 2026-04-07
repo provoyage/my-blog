@@ -4,6 +4,7 @@ import type { Post } from "@/lib/posts";
 type PostGridProps = {
   posts: Post[];
   gridClassName?: string;
+  itemClassName?: string;
   emptyTitle?: string;
   emptyDescription?: string;
 };
@@ -11,6 +12,7 @@ type PostGridProps = {
 export function PostGrid({
   posts,
   gridClassName = "grid gap-6 md:grid-cols-2 xl:grid-cols-4",
+  itemClassName,
   emptyTitle = "記事を準備中です",
   emptyDescription = "Sanity に記事を追加すると、このエリアにカードが自動で表示されます。",
 }: PostGridProps) {
@@ -32,9 +34,15 @@ export function PostGrid({
 
   return (
     <div className={gridClassName}>
-      {posts.map((post) => (
-        <PostCard key={post.slug} post={post} />
-      ))}
+      {posts.map((post) =>
+        itemClassName ? (
+          <div key={post.slug} className={itemClassName}>
+            <PostCard post={post} />
+          </div>
+        ) : (
+          <PostCard key={post.slug} post={post} />
+        ),
+      )}
     </div>
   );
 }

@@ -192,6 +192,14 @@ canvas {
   background: rgba(148, 163, 184, 0.7);
 }
 
+.mobile-swipe-row {
+  scrollbar-width: none;
+}
+
+.mobile-swipe-row::-webkit-scrollbar {
+  display: none;
+}
+
 .text-balance {
   text-wrap: balance;
 }

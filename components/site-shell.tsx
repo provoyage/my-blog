@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { siteConfig } from "@/lib/site";
 
 const primaryNavigation = [
@@ -15,8 +16,27 @@ type SiteShellProps = {
   children: React.ReactNode;
 };
 
+function MenuIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      className="h-5 w-5"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+    >
+      <path d={open ? "M6 6l12 12" : "M4.5 7h15"} />
+      <path d={open ? "M18 6 6 18" : "M4.5 12h15"} />
+      {!open ? <path d="M4.5 17h15" /> : null}
+    </svg>
+  );
+}
+
 export function SiteShell({ children }: SiteShellProps) {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isStudioRoute = pathname?.startsWith("/studio");
 
   if (isStudioRoute) {
@@ -31,7 +51,7 @@ export function SiteShell({ children }: SiteShellProps) {
       />
 
       <header className="sticky top-0 z-30 border-b border-white/60 bg-white/76 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-7xl min-w-0 flex-col gap-4 px-4 py-4 sm:px-8 sm:py-5 lg:flex-row lg:items-center lg:justify-between lg:px-12">
+        <div className="mx-auto flex w-full max-w-7xl min-w-0 items-start justify-between gap-4 px-4 py-4 sm:px-8 sm:py-5 lg:px-12">
           <div className="min-w-0 space-y-1">
             <Link
               href="/"
@@ -39,20 +59,55 @@ export function SiteShell({ children }: SiteShellProps) {
             >
               {siteConfig.name}
             </Link>
-            <p className="text-xs leading-6 text-slate-500 sm:text-sm">
-              40代女性の見た目悩みを比較で整える美容アフィリエイトメディア
+            <p className="max-w-xl text-xs leading-6 text-slate-500 sm:text-sm">
+              40代女性の見た目悩みを比較で整える美容メディア
             </p>
           </div>
 
-          <nav className="flex flex-wrap items-center gap-2 text-sm text-slate-600 sm:gap-3 lg:justify-end">
+          <div className="flex items-center gap-3">
+            <nav className="hidden flex-wrap items-center gap-2 text-sm text-slate-600 lg:flex lg:justify-end">
+              {primaryNavigation.map((item, index) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={
+                    index === primaryNavigation.length - 1
+                      ? "rounded-full bg-slate-950 px-3 py-2 text-xs font-medium text-white transition hover:bg-slate-800 sm:px-4 sm:text-sm"
+                      : "rounded-full px-3 py-2 text-xs transition hover:bg-white/75 hover:text-slate-950 sm:text-sm"
+                  }
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+
+            <button
+              type="button"
+              aria-label={isMobileMenuOpen ? "メニューを閉じる" : "メニューを開く"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-site-navigation"
+              onClick={() => setIsMobileMenuOpen((value) => !value)}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white/90 text-slate-700 shadow-[0_12px_30px_rgba(148,163,184,0.12)] transition hover:bg-white lg:hidden"
+            >
+              <MenuIcon open={isMobileMenuOpen} />
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="mobile-site-navigation"
+          className={`${isMobileMenuOpen ? "block" : "hidden"} border-t border-white/60 bg-white/92 px-4 py-4 sm:px-8 lg:hidden`}
+        >
+          <nav className="flex flex-col gap-2 text-sm text-slate-700">
             {primaryNavigation.map((item, index) => (
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
                 className={
                   index === primaryNavigation.length - 1
-                    ? "rounded-full bg-slate-950 px-3 py-2 text-xs font-medium text-white transition hover:bg-slate-800 sm:px-4 sm:text-sm"
-                    : "rounded-full px-3 py-2 text-xs transition hover:bg-white/75 hover:text-slate-950 sm:text-sm"
+                    ? "inline-flex items-center justify-center rounded-full bg-slate-950 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
+                    : "rounded-[1rem] bg-white/80 px-4 py-3 transition hover:bg-white hover:text-slate-950"
                 }
               >
                 {item.label}

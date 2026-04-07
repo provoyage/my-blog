@@ -18,6 +18,11 @@ import {
 } from "@/lib/posts";
 import { siteConfig } from "@/lib/site";
 
+const swipeContainerClass =
+  "mobile-swipe-row -mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-2 sm:-mx-8 sm:px-8 md:mx-0 md:px-0";
+const swipeCardClass =
+  "w-[calc(100vw-2rem)] flex-none snap-center sm:w-[calc(100vw-4rem)]";
+
 export const metadata: Metadata = {
   title: {
     absolute: siteConfig.name,
@@ -89,9 +94,9 @@ export default async function Home() {
             </Link>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="glass-panel rounded-[1.5rem] p-5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/85 text-slate-700 shadow-[0_12px_30px_rgba(148,163,184,0.16)]">
+          <div className="grid grid-cols-3 gap-3 md:gap-4">
+            <div className="glass-panel rounded-[1.25rem] p-3 text-center md:rounded-[1.5rem] md:p-5 md:text-left">
+              <div className="hidden h-11 w-11 items-center justify-center rounded-2xl bg-white/85 text-slate-700 shadow-[0_12px_30px_rgba(148,163,184,0.16)] md:flex">
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 24 24"
@@ -107,18 +112,18 @@ export default async function Home() {
                   />
                 </svg>
               </div>
-              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.26em] text-slate-500">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 md:mt-4 md:text-xs md:tracking-[0.26em]">
                 Categories
               </p>
-              <p className="mt-3 font-serif text-4xl tracking-[-0.04em] text-slate-950">
+              <p className="mt-2 font-serif text-[2rem] tracking-[-0.04em] text-slate-950 md:mt-3 md:text-4xl">
                 {categories.length}
               </p>
-              <p className="mt-2 text-sm leading-7 text-slate-600">
+              <p className="hidden mt-2 text-sm leading-7 text-slate-600 md:block">
                 4つの悩みカテゴリごとに、ランキングと比較記事を整理しています。
               </p>
             </div>
-            <div className="glass-panel rounded-[1.5rem] p-5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/85 text-slate-700 shadow-[0_12px_30px_rgba(148,163,184,0.16)]">
+            <div className="glass-panel rounded-[1.25rem] p-3 text-center md:rounded-[1.5rem] md:p-5 md:text-left">
+              <div className="hidden h-11 w-11 items-center justify-center rounded-2xl bg-white/85 text-slate-700 shadow-[0_12px_30px_rgba(148,163,184,0.16)] md:flex">
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 24 24"
@@ -134,18 +139,18 @@ export default async function Home() {
                   />
                 </svg>
               </div>
-              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.26em] text-slate-500">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 md:mt-4 md:text-xs md:tracking-[0.26em]">
                 Products
               </p>
-              <p className="mt-3 font-serif text-4xl tracking-[-0.04em] text-slate-950">
+              <p className="mt-2 font-serif text-[2rem] tracking-[-0.04em] text-slate-950 md:mt-3 md:text-4xl">
                 {categoryLandingBlocks.reduce((sum, category) => sum + category.productCount, 0)}
               </p>
-              <p className="mt-2 text-sm leading-7 text-slate-600">
+              <p className="hidden mt-2 text-sm leading-7 text-slate-600 md:block">
                 成分や使い心地まで見比べながら、候補を絞り込める構成です。
               </p>
             </div>
-            <div className="glass-panel rounded-[1.5rem] p-5">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/85 text-slate-700 shadow-[0_12px_30px_rgba(148,163,184,0.16)]">
+            <div className="glass-panel rounded-[1.25rem] p-3 text-center md:rounded-[1.5rem] md:p-5 md:text-left">
+              <div className="hidden h-11 w-11 items-center justify-center rounded-2xl bg-white/85 text-slate-700 shadow-[0_12px_30px_rgba(148,163,184,0.16)] md:flex">
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 24 24"
@@ -163,13 +168,13 @@ export default async function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.5 12h6.5M8.5 15.5h4.25" />
                 </svg>
               </div>
-              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.26em] text-slate-500">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 md:mt-4 md:text-xs md:tracking-[0.26em]">
                 Articles
               </p>
-              <p className="mt-3 font-serif text-4xl tracking-[-0.04em] text-slate-950">
+              <p className="mt-2 font-serif text-[2rem] tracking-[-0.04em] text-slate-950 md:mt-3 md:text-4xl">
                 {categoryLandingBlocks.reduce((sum, category) => sum + category.articleCount, 0)}
               </p>
-              <p className="mt-2 text-sm leading-7 text-slate-600">
+              <p className="hidden mt-2 text-sm leading-7 text-slate-600 md:block">
                 比較、ランキング、読み物を横断して、必要な判断材料を拾えます。
               </p>
             </div>
@@ -204,9 +209,12 @@ export default async function Home() {
           </p>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className={`${swipeContainerClass} md:grid md:grid-cols-2 md:overflow-visible md:pb-0 xl:grid-cols-4`}>
           {categoryLandingBlocks.map((category) => (
-            <article key={category.slug} className="glass-panel overflow-hidden rounded-[1.75rem]">
+            <article
+              key={category.slug}
+              className={`glass-panel ${swipeCardClass} overflow-hidden rounded-[1.75rem] md:w-auto`}
+            >
               <div className="relative aspect-[4/5]">
                 <Image
                   src={category.image}
@@ -277,9 +285,11 @@ export default async function Home() {
             カテゴリ横断で評価軸と選ばれやすさの強い商品をまとめています。
           </p>
         </div>
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className={`${swipeContainerClass} lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0`}>
           {topRankedProducts.map((product, index) => (
-            <ProductCard key={product.id} product={product} rank={index + 1} />
+            <div key={product.id} className={`${swipeCardClass} lg:w-auto`}>
+              <ProductCard product={product} rank={index + 1} />
+            </div>
           ))}
         </div>
       </section>
@@ -294,9 +304,12 @@ export default async function Home() {
           </h2>
         </div>
 
-        <div className="grid gap-6 xl:grid-cols-2">
+        <div className={`${swipeContainerClass} xl:grid xl:grid-cols-2 xl:overflow-visible xl:pb-0`}>
           {categoryLandingBlocks.map((category) => (
-            <article key={category.slug} className="glass-panel overflow-hidden rounded-[2rem]">
+            <article
+              key={category.slug}
+              className={`glass-panel ${swipeCardClass} overflow-hidden rounded-[2rem] xl:w-auto`}
+            >
               <div className="relative h-48">
                 <Image
                   src={category.image}
@@ -396,9 +409,17 @@ export default async function Home() {
           </p>
         </div>
 
-        <div className="grid gap-6 xl:grid-cols-2">
-          {featuredComparison ? <PostCard post={featuredComparison} featured /> : null}
-          {featuredRanking ? <PostCard post={featuredRanking} featured /> : null}
+        <div className={`${swipeContainerClass} xl:grid xl:grid-cols-2 xl:overflow-visible xl:pb-0`}>
+          {featuredComparison ? (
+            <div className={`${swipeCardClass} xl:w-auto`}>
+              <PostCard post={featuredComparison} featured />
+            </div>
+          ) : null}
+          {featuredRanking ? (
+            <div className={`${swipeCardClass} xl:w-auto`}>
+              <PostCard post={featuredRanking} featured />
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -412,9 +433,11 @@ export default async function Home() {
           </h2>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className={`${swipeContainerClass} md:grid md:grid-cols-2 md:overflow-visible md:pb-0 xl:grid-cols-4`}>
           {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <div key={product.id} className={`${swipeCardClass} md:w-auto`}>
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
       </section>
@@ -433,6 +456,8 @@ export default async function Home() {
 
         <PostGrid
           posts={popularPosts}
+          gridClassName={`${swipeContainerClass} md:grid md:grid-cols-2 md:overflow-visible md:pb-0 xl:grid-cols-4`}
+          itemClassName={`${swipeCardClass} md:w-auto`}
           emptyTitle="人気記事を準備中です"
           emptyDescription="Sanity に人気記事が追加されると、このエリアにカード形式で表示されます。"
         />
@@ -458,6 +483,8 @@ export default async function Home() {
 
         <PostGrid
           posts={latestPosts}
+          gridClassName={`${swipeContainerClass} md:grid md:grid-cols-2 md:overflow-visible md:pb-0 xl:grid-cols-4`}
+          itemClassName={`${swipeCardClass} md:w-auto`}
           emptyTitle="新着記事を準備中です"
           emptyDescription="最新記事が公開されると、自動でここに並びます。"
         />
