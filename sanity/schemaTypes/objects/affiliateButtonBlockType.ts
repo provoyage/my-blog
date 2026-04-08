@@ -28,12 +28,12 @@ export const affiliateButtonBlockType = defineType({
       name: "subcopy",
       title: "補足テキスト",
       type: "string",
-      description: "ボタン下に短く表示する説明です。",
+      description: "ボタン下に表示する短い補足文です。",
       validation: (rule) => rule.max(80),
     }),
     defineField({
       name: "tone",
-      title: "配色",
+      title: "表示トーン",
       type: "string",
       initialValue: "dark",
       options: {

@@ -158,7 +158,7 @@ const emptyFeaturedPost: Post = {
   appealAxis: "記事準備中",
   publishedAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
-  readTime: "1分",
+  readTime: "7分",
   author: "編集部",
   popularity: 0,
   keywords: [],
