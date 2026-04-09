@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { articleSeeds } from "@/lib/data/articles";
 import { categories } from "@/lib/data/categories";
+import { productMedia } from "@/lib/data/media";
 import { products } from "@/lib/data/products";
 import { rankingOrders } from "@/lib/data/rankings";
 import type {
@@ -81,7 +82,25 @@ const categoryMap = new Map<CategorySlug, MediaCategory>(
   categories.map((category) => [category.slug, category]),
 );
 
-const productMap = new Map<string, Product>(products.map((product) => [product.id, product]));
+function withProductImage(product: Product): Product {
+  const media = productMedia[product.id as keyof typeof productMedia];
+
+  if (!media) {
+    return product;
+  }
+
+  return {
+    ...product,
+    image: media.src,
+    imageAlt: media.alt,
+  };
+}
+
+const productsWithMedia = products.map(withProductImage);
+
+const productMap = new Map<string, Product>(
+  productsWithMedia.map((product) => [product.id, product]),
+);
 
 function resolveRankingIds(key: RankingKey) {
   return rankingOrders[key] ?? [];
@@ -370,7 +389,7 @@ export function getCategoryBySlug(slug: CategorySlug) {
 }
 
 export function getAllProducts() {
-  return products;
+  return productsWithMedia;
 }
 
 export function getProductById(id: string) {
@@ -399,7 +418,7 @@ export function getTopRankedProducts(limit = 3) {
 export function getFeaturedProducts(limit = 4) {
   const featuredIds = [
     ...rankingOrders.overall.filter((id) => productMap.get(id)?.featured),
-    ...products.filter((product) => product.featured).map((product) => product.id),
+    ...productsWithMedia.filter((product) => product.featured).map((product) => product.id),
   ];
 
   return getProductsByIds([...new Set(featuredIds)]).slice(0, limit);
@@ -507,7 +526,7 @@ export async function getCategoryWithCounts() {
 
   return categories.map((category) => ({
     ...category,
-    productCount: products.filter((product) => product.categorySlug === category.slug).length,
+    productCount: productsWithMedia.filter((product) => product.categorySlug === category.slug).length,
     articleCount: posts.filter((post) => post.categorySlug === category.slug).length,
   }));
 }

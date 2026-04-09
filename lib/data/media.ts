@@ -7,125 +7,125 @@ type MediaAsset = {
 
 export const categoryMedia: Record<CategorySlug, MediaAsset> = {
   "gray-hair-scalp": {
-    src: "/media/categories/gray-hair-scalp-card.jpg",
-    alt: "自然な艶髪を見せる40代前後のアジア系女性",
+    src: "/media/categories/gray-hair.jpg",
+    alt: "長い髪をなびかせる女性のヘアケアイメージ",
   },
   "dry-skin-dullness": {
-    src: "/media/categories/dry-skin-dullness-card.jpg",
-    alt: "保湿クリームをなじませる40代前後のアジア系女性",
+    src: "/media/categories/kesyousui.png",
+    alt: "肌にクリームをなじませる女性のスキンケアイメージ",
   },
   "odor-care": {
-    src: "/media/categories/odor-care-card.jpg",
-    alt: "清潔感のある笑顔を見せる40代前後のアジア系女性",
+    src: "/media/categories/buresu.png",
+    alt: "清潔感のある笑顔の女性を使ったエチケットケアイメージ",
   },
   "beauty-supplement": {
-    src: "/media/categories/beauty-supplement-card.jpg",
-    alt: "美容サプリと日常感のあるテーブルフォト",
+    src: "/media/categories/supplement.jpg",
+    alt: "美容サプリとインナーケアを連想させるボトルのイメージ",
   },
 };
 
 export const articleMedia = {
   "gray-hair-care-ranking-2026": {
     src: "/media/articles/gray-hair-care-ranking-2026.jpg",
-    alt: "髪の美しさが伝わる40代前後のアジア系女性",
+    alt: "白髪と頭皮ケアのランキング記事向けビジュアル",
   },
   "gray-hair-scalp-comparison": {
     src: "/media/articles/gray-hair-scalp-comparison.jpg",
-    alt: "髪や頭皮のケアを連想できるヘアケアシーン",
+    alt: "白髪と頭皮ケアの比較記事向けビジュアル",
   },
   "how-to-choose-gray-hair-care-for-40s": {
     src: "/media/articles/how-to-choose-gray-hair-care-for-40s.jpg",
-    alt: "自然なヘアケアを想起させる40代前後の女性",
+    alt: "白髪ケアの選び方記事向けビジュアル",
   },
   "irotsuya-color-treatment-review": {
     src: "/media/articles/irotsuya-color-treatment-review.jpg",
-    alt: "ヘアケア商品が整然と並ぶレビュー向け写真",
+    alt: "白髪と頭皮ケアのセット商品レビュー向けビジュアル",
   },
   "dry-skin-care-ranking-2026": {
-    src: "/media/articles/dry-skin-care-ranking-2026.jpg",
-    alt: "保湿ケア中の40代前後のアジア系女性",
+    src: "/media/articles/kesyousui.png",
+    alt: "乾燥肌ケアのランキング記事向けビジュアル",
   },
   "moisture-care-comparison-for-40s": {
     src: "/media/articles/moisture-care-comparison-for-40s.jpg",
-    alt: "スキンケア中の女性を写した比較記事向け写真",
+    alt: "保湿ケアの比較記事向けビジュアル",
   },
   "dullness-care-routine-for-40s": {
-    src: "/media/articles/dullness-care-routine-for-40s.jpg",
-    alt: "肌のうるおいケアを連想できる女性の写真",
+    src: "/media/articles/kesyousui.png",
+    alt: "くすみケアのルーティン記事向けビジュアル",
   },
   "odor-care-ranking-2026": {
-    src: "/media/articles/odor-care-ranking-2026.jpg",
-    alt: "清潔感のある自然な表情のアジア系女性",
+    src: "/media/articles/buresu.png",
+    alt: "体臭と口臭ケアのランキング記事向けビジュアル",
   },
   "odor-care-item-comparison": {
-    src: "/media/articles/odor-care-item-comparison.jpg",
-    alt: "身だしなみの整った清潔感のある女性の写真",
+    src: "/media/articles/buresu.png",
+    alt: "体臭と口臭ケアの比較記事向けビジュアル",
   },
   "how-to-choose-odor-care-for-40s": {
-    src: "/media/articles/how-to-choose-odor-care-for-40s.jpg",
-    alt: "ナチュラルな笑顔で清潔感を伝える女性",
+    src: "/media/articles/buresu.png",
+    alt: "ニオイケアの選び方記事向けビジュアル",
   },
   "beauty-supplement-ranking-2026": {
     src: "/media/articles/beauty-supplement-ranking-2026.jpg",
-    alt: "美容サプリと果物を組み合わせたランキング向け写真",
+    alt: "美容サプリのランキング記事向けビジュアル",
   },
   "beauty-supplement-comparison-for-40s": {
     src: "/media/articles/beauty-supplement-comparison-for-40s.jpg",
-    alt: "サプリの比較を連想できるクリーンなボトル写真",
+    alt: "美容サプリの比較記事向けビジュアル",
   },
   "liftinner-collagen-review": {
     src: "/media/articles/liftinner-collagen-review.jpg",
-    alt: "水と一緒に置かれた美容サプリのレビュー向け写真",
+    alt: "美容サプリレビュー向けの上質なビジュアル",
   },
 } as const satisfies Record<string, MediaAsset>;
 
 export const productMedia = {
-  "irotsuya-color-treatment": {
-    src: "/media/products/irotsuya-color-treatment-card.jpg",
-    alt: "白髪ケア向けヘアケア商品が並ぶ写真",
+  "follics-luxevibe-doctorzero-set": {
+    src: "/media/products/haircare-lineup.jpg",
+    alt: "白髪と頭皮ケアをまとめて始めやすいセットのイメージ",
   },
-  "rootlift-scalp-serum": {
-    src: "/media/products/rootlift-scalp-serum-card.jpg",
-    alt: "スポイト美容液を使う頭皮ケアシーン",
+  "regrowthlabs-hair-fiber": {
+    src: "/media/products/scalp-serum.jpg",
+    alt: "分け目やつむじを自然に整えるファイバーのイメージ",
   },
-  "clearbalance-scalp-shampoo": {
-    src: "/media/products/clearbalance-scalp-shampoo-card.jpg",
-    alt: "スカルプシャンプーのボトル写真",
+  "vitalme-l-lysine-plus": {
+    src: "/media/products/hair-supplement-set.jpg",
+    alt: "白髪ケアを内側から支えるサプリのイメージ",
   },
-  "dewbarrier-serum": {
-    src: "/media/products/dewbarrier-serum-card.jpg",
-    alt: "保湿美容液のボトルを持つ写真",
+  "perspirex-comfort-rollon": {
+    src: "/media/products/body-wash.jpg",
+    alt: "汗とニオイの不安に向き合うロールオンのイメージ",
   },
-  "ceramide-veil-cream": {
-    src: "/media/products/ceramide-veil-cream-card.jpg",
-    alt: "保湿クリーム容器のクリーンな商品写真",
-  },
-  "glowreset-oil-essence": {
-    src: "/media/products/glowreset-oil-essence-card.jpg",
-    alt: "オイルエッセンスのボトル写真",
-  },
-  "freshbalance-body-wash": {
-    src: "/media/products/freshbalance-body-wash-card.jpg",
-    alt: "清潔感のあるボディウォッシュのボトル写真",
-  },
-  "cleartone-deo-soap": {
+  "opacy-deo-soap": {
     src: "/media/products/cleartone-deo-soap-card.jpg",
-    alt: "デオドラントソープのボトル写真",
+    alt: "全身をすっきり洗い上げるデオソープのイメージ",
   },
-  "breathreset-rinse": {
-    src: "/media/products/breathreset-rinse-card.jpg",
-    alt: "オーラルケア用品が並ぶ比較向け写真",
+  "listerine-total-care-sensitive-zero": {
+    src: "/media/products/oral-care-set.jpg",
+    alt: "低刺激で続けやすいマウスウォッシュのイメージ",
   },
-  "liftinner-collagen": {
-    src: "/media/products/liftinner-collagen-card.jpg",
-    alt: "サプリボトルとグラスを並べた写真",
+  "bihakuen-premium-sheep-placenta": {
+    src: "/media/products/supplement-water.jpg",
+    alt: "ハリ感を内側から支える美容サプリのイメージ",
   },
-  "hairsupport-biotin": {
-    src: "/media/products/hairsupport-biotin-card.jpg",
-    alt: "髪悩み向けサプリボトルの写真",
+  "invy-empower": {
+    src: "/media/products/biotin-bottle.jpg",
+    alt: "複数の美容成分をまとめて取り入れるサプリのイメージ",
   },
-  "wellaging-beauty-support": {
-    src: "/media/products/wellaging-beauty-support-card.jpg",
-    alt: "美容サプリが並ぶ商品比較向け写真",
+  "byakuran-shi-birds-nest": {
+    src: "/media/articles/supplement-closeup.jpg",
+    alt: "ご褒美感のあるツバメの巣ドリンクのイメージ",
+  },
+  "bihakuen-collagen-soap": {
+    src: "/media/products/soap-bottle.jpg",
+    alt: "保湿感を残しやすいコラーゲン石鹸のイメージ",
+  },
+  "gold-swallow-pearl-white-mask": {
+    src: "/media/products/moisture-cream.jpg",
+    alt: "乾燥とくすみを集中ケアするパックのイメージ",
+  },
+  "alive-hydroplankton-mask": {
+    src: "/media/products/moisture-serum.jpg",
+    alt: "みずみずしい集中保湿マスクのイメージ",
   },
 } as const satisfies Record<string, MediaAsset>;
