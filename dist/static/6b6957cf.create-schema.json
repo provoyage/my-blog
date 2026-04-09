@@ -1,0 +1,733 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 8
+              },
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "タイトル"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "slug",
+        "type": "slug",
+        "title": "スラッグ"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 20
+              },
+              {
+                "flag": "max",
+                "constraint": 220
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text",
+        "title": "説明文"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "description": "一覧カードや記事冒頭で使う短い要約です。未入力の場合は description を流用します。",
+        "name": "excerpt",
+        "type": "text",
+        "title": "カード要約"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "description": "未入力の場合は description / excerpt から自動生成されます。",
+        "name": "seoDescription",
+        "type": "text",
+        "title": "SEO説明文"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "mainImage",
+        "type": "image",
+        "title": "メイン画像"
+      },
+      {
+        "description": "見出し、画像、比較ボックス、アフィリエイトボタンを差し込みできます。",
+        "of": [
+          {
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "箇条書き"
+              },
+              {
+                "value": "number",
+                "title": "番号付き"
+              }
+            ],
+            "marks": {
+              "annotations": [
+                {
+                  "fields": [
+                    {
+                      "options": {
+                        "list": [
+                          {
+                            "title": "チャコール",
+                            "value": "#243041"
+                          },
+                          {
+                            "title": "ローズ",
+                            "value": "#b45367"
+                          },
+                          {
+                            "title": "アンバー",
+                            "value": "#b66a1e"
+                          },
+                          {
+                            "title": "モスグリーン",
+                            "value": "#4d6b57"
+                          },
+                          {
+                            "title": "ネイビー",
+                            "value": "#34516f"
+                          }
+                        ],
+                        "layout": "dropdown"
+                      },
+                      "validation": [
+                        {
+                          "level": "error",
+                          "rules": [
+                            {
+                              "flag": "valid",
+                              "constraint": [
+                                "#243041",
+                                "#b45367",
+                                "#b66a1e",
+                                "#4d6b57",
+                                "#34516f"
+                              ]
+                            },
+                            {
+                              "flag": "presence",
+                              "constraint": "required"
+                            }
+                          ]
+                        }
+                      ],
+                      "name": "color",
+                      "type": "string",
+                      "title": "カラー"
+                    }
+                  ],
+                  "name": "textColor",
+                  "type": "object",
+                  "title": "文字色"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "太字"
+                },
+                {
+                  "value": "underline",
+                  "title": "下線"
+                },
+                {
+                  "value": "highlight",
+                  "title": "マーカー"
+                }
+              ]
+            },
+            "of": [],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "通常"
+              },
+              {
+                "value": "h2",
+                "title": "見出し 2"
+              },
+              {
+                "value": "h3",
+                "title": "見出し 3"
+              },
+              {
+                "value": "h4",
+                "title": "見出し 4"
+              }
+            ],
+            "type": "block"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "max",
+                        "constraint": 120
+                      }
+                    ]
+                  }
+                ],
+                "name": "alt",
+                "type": "string",
+                "title": "代替テキスト"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "max",
+                        "constraint": 160
+                      }
+                    ]
+                  }
+                ],
+                "name": "caption",
+                "type": "string",
+                "title": "キャプション"
+              }
+            ],
+            "type": "image"
+          },
+          {
+            "type": "affiliateButtonBlock",
+            "title": "アフィリエイトボタン"
+          },
+          {
+            "type": "comparisonBoxBlock",
+            "title": "比較ボックス"
+          }
+        ],
+        "name": "body",
+        "type": "array",
+        "title": "本文"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "白髪・頭皮ケア",
+              "value": "gray-hair-scalp"
+            },
+            {
+              "title": "乾燥・くすみ",
+              "value": "dry-skin-dullness"
+            },
+            {
+              "title": "ニオイケア",
+              "value": "odor-care"
+            },
+            {
+              "title": "美容サプリ",
+              "value": "beauty-supplement"
+            }
+          ],
+          "layout": "dropdown"
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "gray-hair-scalp",
+                  "dry-skin-dullness",
+                  "odor-care",
+                  "beauty-supplement"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "category",
+        "type": "string",
+        "title": "カテゴリ"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "比較",
+              "value": "comparison"
+            },
+            {
+              "title": "ランキング",
+              "value": "ranking"
+            },
+            {
+              "title": "レビュー",
+              "value": "review"
+            },
+            {
+              "title": "悩み解説",
+              "value": "concern"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "concern",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "comparison",
+                  "ranking",
+                  "review",
+                  "concern"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "articleType",
+        "type": "string",
+        "title": "記事タイプ"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 6
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "targetConcern",
+        "type": "array",
+        "title": "悩みタグ"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 100
+              }
+            ]
+          }
+        ],
+        "description": "入力するとカードや記事導線に順位が表示されます。",
+        "name": "rankingRank",
+        "type": "number",
+        "title": "ランキング順位"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "description": "入力するとカードと記事導線に購入ボタンが表示されます。",
+        "name": "affiliateUrl",
+        "type": "url",
+        "title": "アフィリエイト URL"
+      },
+      {
+        "initialValue": "公式サイトを見る",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "affiliateLabel",
+        "type": "string",
+        "title": "アフィリエイト文言"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "publishedAt",
+        "type": "datetime",
+        "title": "公開日"
+      }
+    ],
+    "name": "post",
+    "type": "document",
+    "title": "記事"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "公式サイトを見る",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 32
+              }
+            ]
+          }
+        ],
+        "name": "label",
+        "type": "string",
+        "title": "ボタン文言"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "name": "url",
+        "type": "url",
+        "title": "リンク URL"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "description": "ボタン下に短く表示する説明です。",
+        "name": "subcopy",
+        "type": "string",
+        "title": "補足テキスト"
+      },
+      {
+        "initialValue": "dark",
+        "options": {
+          "list": [
+            {
+              "title": "ダーク",
+              "value": "dark"
+            },
+            {
+              "title": "ライト",
+              "value": "light"
+            }
+          ],
+          "layout": "radio"
+        },
+        "name": "tone",
+        "type": "string",
+        "title": "配色"
+      }
+    ],
+    "name": "affiliateButtonBlock",
+    "type": "object",
+    "title": "アフィリエイトボタン"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "label",
+        "type": "string",
+        "title": "見出し"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "name": "value",
+        "type": "text",
+        "title": "内容"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 24
+              }
+            ]
+          }
+        ],
+        "description": "任意で小さな強調ラベルを表示します。",
+        "name": "emphasis",
+        "type": "string",
+        "title": "補足ラベル"
+      }
+    ],
+    "name": "comparisonBoxItem",
+    "type": "object",
+    "title": "比較項目"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "タイトル"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "name": "intro",
+        "type": "text",
+        "title": "導入文"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 2
+              },
+              {
+                "flag": "max",
+                "constraint": 6
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "comparisonBoxItem",
+            "title": "比較項目"
+          }
+        ],
+        "name": "items",
+        "type": "array",
+        "title": "比較項目"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "note",
+        "type": "string",
+        "title": "補足"
+      }
+    ],
+    "name": "comparisonBoxBlock",
+    "type": "object",
+    "title": "比較ボックス"
+  }
+]

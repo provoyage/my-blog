@@ -1,0 +1,26 @@
+Photo assets stored in `public/media` were downloaded from Pexels and fixed locally for stable operation.
+
+- Categories
+  - `categories/gray-hair.jpg`: https://www.pexels.com/photo/elegant-asian-woman-with-long-silky-hair-35267456/
+  - `categories/dry-skin.jpg`: https://www.pexels.com/photo/smiling-woman-applying-facial-cream-on-her-face-9475386/
+  - `categories/odor-care.jpg`: https://www.pexels.com/photo/woman-in-black-crew-neck-shirt-smiling-34554869/
+  - `categories/supplement.jpg`: https://www.pexels.com/photo/overhead-shot-of-a-bottle-of-vegan-supplements-4607248/
+- Products
+  - `products/scalp-serum.jpg`: https://www.pexels.com/photo/a-woman-using-a-dropper-bottle-11179569/
+  - `products/scalp-shampoo.jpg`: https://www.pexels.com/photo/white-bottle-beside-cotton-12998418/
+  - `products/haircare-lineup.jpg`: https://www.pexels.com/photo/hair-care-products-on-white-surface-19833253/
+  - `products/conditioner-set.jpg`: https://www.pexels.com/photo/moisturizing-conditioner-bottle-on-beige-surface-7428103/
+  - `products/moisture-serum.jpg`: https://www.pexels.com/photo/woman-applying-serum-in-bathroom-35274769/
+  - `products/moisture-cream.jpg`: https://www.pexels.com/photo/cosmetic-product-on-white-surface-4857799/
+  - `products/hair-elixir.jpg`: https://www.pexels.com/photo/bottle-of-hair-treatment-on-stones-14780444/
+  - `products/body-wash.jpg`: https://www.pexels.com/photo/bottles-of-hydrating-body-wash-11036402/
+  - `products/soap-bottle.jpg`: https://www.pexels.com/photo/lavender-hand-soap-in-pump-bottle-4678949/
+  - `products/oral-care-set.jpg`: https://www.pexels.com/photo/flat-lay-photography-of-oral-hygiene-products-30551804/
+  - `products/supplement-water.jpg`: https://www.pexels.com/photo/white-pill-bottle-near-glass-of-water-13779107/
+  - `products/biotin-bottle.jpg`: https://www.pexels.com/photo/bottle-of-supplements-on-white-surface-29445578/
+  - `products/hair-supplement-set.jpg`: https://www.pexels.com/photo/premium-hair-health-support-supplements-29056329/
+- Articles
+  - `articles/gray-hair-closeup.jpg`: https://www.pexels.com/photo/woman-combing-her-hair-6144285/
+  - `articles/skin-care-routine.jpg`: https://www.pexels.com/photo/a-close-up-shot-of-a-woman-applying-a-cream-on-her-face-6543552/
+  - `articles/fresh-smile.jpg`: https://www.pexels.com/photo/woman-in-black-crew-neck-shirt-smiling-34554869/
+  - `articles/supplement-closeup.jpg`: https://www.pexels.com/photo/white-bottle-on-beige-background-13779109/

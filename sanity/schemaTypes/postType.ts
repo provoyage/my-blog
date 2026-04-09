@@ -117,6 +117,21 @@ export const postType = defineType({
                   }),
                 ],
               }),
+              // ▼ ここから：リンク機能を追加（既存のtextColorは消さずに併記） ▼
+              defineArrayMember({
+                name: "link",
+                title: "リンク",
+                type: "object",
+                fields: [
+                  defineField({
+                    name: "href",
+                    title: "URL",
+                    type: "url",
+                    validation: (rule) => rule.uri({ scheme: ["http", "https"] })
+                  })
+                ]
+              }),
+              // ▲ ここまで ▲
             ],
           },
         }),
