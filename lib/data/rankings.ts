@@ -1,37 +1,33 @@
 import { type CategorySlug, type RankingKey } from "@/lib/data/types";
 
-/**
- * 順位を変える時はこのファイルだけを編集します。
- * 商品データや記事データに順位は持たせません。
- */
 export const rankingOrders: Record<RankingKey, string[]> = {
   overall: [
-    "dewbarrier-serum",
-    "irotsuya-color-treatment",
-    "freshbalance-body-wash",
-    "liftinner-collagen",
-    "rootlift-scalp-serum",
-    "ceramide-veil-cream",
+    "bihakuen-collagen-soap",
+    "perspirex-comfort-rollon",
+    "follics-luxevibe-doctorzero-set",
+    "bihakuen-premium-sheep-placenta",
+    "gold-swallow-pearl-white-mask",
+    "opacy-deo-soap",
   ],
   "gray-hair-scalp": [
-    "irotsuya-color-treatment",
-    "rootlift-scalp-serum",
-    "clearbalance-scalp-shampoo",
+    "follics-luxevibe-doctorzero-set",
+    "regrowthlabs-hair-fiber",
+    "vitalme-l-lysine-plus",
   ],
   "dry-skin-dullness": [
-    "dewbarrier-serum",
-    "ceramide-veil-cream",
-    "glowreset-oil-essence",
+    "bihakuen-collagen-soap",
+    "gold-swallow-pearl-white-mask",
+    "alive-hydroplankton-mask",
   ],
   "odor-care": [
-    "freshbalance-body-wash",
-    "cleartone-deo-soap",
-    "breathreset-rinse",
+    "perspirex-comfort-rollon",
+    "opacy-deo-soap",
+    "listerine-total-care-sensitive-zero",
   ],
   "beauty-supplement": [
-    "liftinner-collagen",
-    "hairsupport-biotin",
-    "wellaging-beauty-support",
+    "bihakuen-premium-sheep-placenta",
+    "invy-empower",
+    "byakuran-shi-birds-nest",
   ],
 };
 

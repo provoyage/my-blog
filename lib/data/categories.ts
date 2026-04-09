@@ -7,10 +7,10 @@ export const categories: MediaCategory[] = [
     name: "白髪・頭皮",
     heroLabel: "Gray Hair / Scalp",
     description:
-      "白髪が目立ち始めた時のセルフケア、頭皮環境を整えるアイテム、染めながら補修できる時短商品を比較します。",
+      "白髪が気になり始めた時のセルフケアと、頭皮環境の立て直しを同時に考えたい人向けのカテゴリです。",
     summary:
-      "白髪が気になり始めた40代女性向けに、染めやすさ、続けやすさ、頭皮へのやさしさを軸に選べるカテゴリです。",
-    concerns: ["白髪が目立つ", "分け目が気になる", "頭皮の乾燥", "ハリ不足"],
+      "染めるだけでなく、分け目・ハリ不足・頭皮の乾燥まで含めて整えたい40代向けに、白髪ケア商品を比較しやすく整理しています。",
+    concerns: ["白髪が増えてきた", "分け目の印象が気になる", "頭皮の乾燥", "髪のハリ不足"],
     image: categoryMedia["gray-hair-scalp"].src,
     imageAlt: categoryMedia["gray-hair-scalp"].alt,
   },
@@ -19,10 +19,10 @@ export const categories: MediaCategory[] = [
     name: "乾燥肌・くすみ",
     heroLabel: "Dry Skin / Dullness",
     description:
-      "乾燥による小じわ感、夕方のくすみ、ツヤ不足に悩む40代向けに、保湿重視で比較しやすい商品をまとめています。",
+      "乾燥によるつっぱり感、くすみ、夕方の疲れ顔が気になる人に向けて、保湿重視のケアを比較するカテゴリです。",
     summary:
-      "うるおい実感、ハリ感、ベタつきにくさを見ながら、毎日続けやすい保湿ケアを選べるカテゴリです。",
-    concerns: ["乾燥小じわ", "くすみ印象", "ごわつき", "ツヤ不足"],
+      "洗顔・シートマスク・保湿パックまで、うるおいを残しながら続けやすい乾燥対策を選びやすくまとめています。",
+    concerns: ["乾燥でつっぱる", "くすみが気になる", "夜までうるおいを保ちたい", "肌印象を明るく見せたい"],
     image: categoryMedia["dry-skin-dullness"].src,
     imageAlt: categoryMedia["dry-skin-dullness"].alt,
   },
@@ -31,10 +31,10 @@ export const categories: MediaCategory[] = [
     name: "体臭・口臭",
     heroLabel: "Odor Care",
     description:
-      "ニオイの不安を日常ケアで抑えたい人向けに、ボディケア、口臭ケア、清潔感の維持に役立つ商品を比較します。",
+      "汗・体臭・口臭を毎日のケアで整えたい人向けに、使う場面の違う商品を比較するカテゴリです。",
     summary:
-      "外出前に使いやすいこと、続けやすい価格、清潔感のある使い心地を基準に選びやすくしています。",
-    concerns: ["体臭が気になる", "口臭対策", "汗ばむ季節", "清潔感を保ちたい"],
+      "脇汗対策、全身を洗う石鹸、口臭ケアまで、悩みの出方に合わせて選びやすい導線で整理しています。",
+    concerns: ["脇汗が気になる", "体臭を抑えたい", "口臭をケアしたい", "清潔感を保ちたい"],
     image: categoryMedia["odor-care"].src,
     imageAlt: categoryMedia["odor-care"].alt,
   },
@@ -43,10 +43,10 @@ export const categories: MediaCategory[] = [
     name: "美容サプリ",
     heroLabel: "Beauty Supplement",
     description:
-      "内側からの美容ケアを取り入れたい40代女性向けに、ハリ感、髪の印象、巡りケアを意識したサプリを比較します。",
+      "内側から美容コンディションを支えたい人向けに、成分設計や続けやすさで比較するカテゴリです。",
     summary:
-      "続けやすさ、成分のわかりやすさ、毎日の取り入れやすさを重視して選べるカテゴリです。",
-    concerns: ["ハリ不足", "髪の元気不足", "めぐりケア", "インナーケアを始めたい"],
+      "プラセンタ、ツバメの巣、美容サポート成分など、目的に合わせて選びやすい美容サプリを比較しています。",
+    concerns: ["ハリ不足が気になる", "内側から整えたい", "年齢サインを底上げしたい", "無理なく続けたい"],
     image: categoryMedia["beauty-supplement"].src,
     imageAlt: categoryMedia["beauty-supplement"].alt,
   },

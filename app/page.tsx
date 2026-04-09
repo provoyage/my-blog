@@ -70,9 +70,9 @@ export default async function Home() {
 
           <div className="space-y-7">
             <h1 className="max-w-4xl break-words font-serif text-[2.9rem] leading-[0.98] tracking-[-0.07em] text-slate-950 text-balance sm:text-[4.2rem] lg:text-[5.7rem]">
-              その悩みに静かに向き合い、
+              その悩み、
               <br />
-              選び方だけを整える。
+              選び方で変わる。
             </h1>
             <p className="max-w-xl text-base leading-8 tracking-[0.01em] text-slate-600 sm:text-lg">
               年齢のサインに向き合いながら、無理なく続けやすいケアや選び方を比較で整理しました。
