@@ -54,7 +54,7 @@ export const articleMedia = {
     alt: "くすみケアのルーティン記事向けビジュアル",
   },
   "odor-care-ranking-2026": {
-    src: "/media/articles/rankingburesu.png",
+    src: "/media/articles/ranking.png",
     alt: "体臭と口臭ケアのランキング記事向けビジュアル",
   },
   "odor-care-item-comparison": {
