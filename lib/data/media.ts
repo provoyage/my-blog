@@ -54,11 +54,11 @@ export const articleMedia = {
     alt: "くすみケアのルーティン記事向けビジュアル",
   },
   "odor-care-ranking-2026": {
-    src: "/media/articles/buresu.png",
+    src: "/media/articles/rankingburesu.png",
     alt: "体臭と口臭ケアのランキング記事向けビジュアル",
   },
   "odor-care-item-comparison": {
-    src: "/media/articles/buresu.png",
+    src: "/media/articles/hikakuburesu.png",
     alt: "体臭と口臭ケアの比較記事向けビジュアル",
   },
   "how-to-choose-odor-care-for-40s": {
